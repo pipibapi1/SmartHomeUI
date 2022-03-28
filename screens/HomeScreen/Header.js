@@ -1,23 +1,54 @@
 import * as React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 
 export default function Header() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Header</Text>
-      <Text>
-        This contains the User Information Image Button and the name of user
-      </Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.info}>
+        <TouchableOpacity
+          onPress={() => {
+            alert("Go to user information screen!");
+          }}
+        >
+          <Image style={styles.img} source={require("./assets/quan.png")} />
+        </TouchableOpacity>
+        <Text style={styles.text}>Quân</Text>
+      </SafeAreaView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  img: {
+    width: 55,
+    height: 52,
+    borderRadius: 52 / 2,
+  },
   text: {
     backgroundColor: "transparent",
-    fontSize: 22,
+    fontSize: 20,
     color: "#FDA43C",
-    fontWeight: "bold",
+  },
+  container: {
+    //backgroundColor: "blue",
+    width: "100%",
+    height: "8%",
+  },
+  info: {
+    width: "28%",
+    height: "80%",
+    marginLeft: "65%",
+    marginTop: "2%",
+    flexDirection: "row",
+    //backgroundColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
+    justifyContent: "space-between",
   },
 });

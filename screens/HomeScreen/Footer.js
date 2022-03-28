@@ -1,17 +1,49 @@
 import * as React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import { StatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 
 export default function Footer() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Footer</Text>
-      <Text>This contains Home Button</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          alert("STAY!");
+        }}
+      >
+        <Image
+          style={styles.home_image}
+          source={require("./assets/home.png")}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    //backgroundColor: "green",
+    width: "100%",
+    height: "16%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  button: {
+    backgroundColor: "#FDA43C",
+    width: "24%",
+    height: "60%",
+    borderRadius: 40,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  home_image: {
+    width: "60%",
+    height: "60%",
+  },
   text: {
     backgroundColor: "transparent",
     fontSize: 22,
