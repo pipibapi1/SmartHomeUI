@@ -2,10 +2,10 @@ import * as React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import Header from "./Header";
-import MyHome from "./MyHome";
-import Features from "./Features";
-import Footer from "./Footer";
+import Header from "./Header.js";
+import Title from "./Title.js";
+import ClimateInfo from "./ClimateInfo.js";
+import Footer from "./Footer.js";
 
 export default function index() {
   return (
@@ -16,8 +16,8 @@ export default function index() {
         style={styles.background}
       />
       <Header />
-      <MyHome />
-      <Features />
+      <Title />
+      <ClimateInfo />
       <Footer />
     </SafeAreaView>
   );
