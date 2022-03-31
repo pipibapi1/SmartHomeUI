@@ -1,5 +1,5 @@
-import Home from "./screens/HomeScreen/index.js";
+import Profile from "./screens/ProfileScreen/index.js";
 
 export default function App() {
-  return <Home />;
+  return <Profile />;
 }
