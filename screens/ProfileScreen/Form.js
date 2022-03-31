@@ -29,6 +29,8 @@ export default function Form() {
             <Text style={{marginLeft: "60px", position: "relative", top: "-10px", marginRight: "30px"}}>What's your date of birth?</Text>
             <Image style={styles.img_down} source={require("./assets/calendar.png")} />
         </Text>
+
+        <Image style={styles.save} source={require("./assets/Save.png")} />
     </SafeAreaView>
   );
 }
@@ -48,6 +50,12 @@ const styles = StyleSheet.create({
   img_down: {
     height: 38,
     width: 38,
+  },
+  save: {
+    marginTop: "10px",
+    marginLeft: "290px",
+    height: "47px",
+    width: "75px",
   },
   text_title: {
     backgroundColor: "transparent",
