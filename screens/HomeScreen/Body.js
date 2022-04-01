@@ -30,7 +30,7 @@ function Body({ navigation }) {
     clean: true,
     connectTimeout: 10000,
     username: "duy1711ak",
-    password: "aio_mLiJ80UX61ecGLCeUwzTi3vtWCpE",
+    password: "aio_wSsJ61gqapOCi1uvfve5DTHJtc3N",
     reconnectPeriod: 6000,
   });
 
