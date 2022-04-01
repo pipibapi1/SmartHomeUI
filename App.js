@@ -1,6 +1,5 @@
-import Home from "./screens/HomeScreen/index.js";
-import Climate from "./screens/ClimateScreen/index.js";
-
+import AppNavigator from "./app.navigator.js";
+import React from "react";
 export default function App() {
-  return <Home />;
+  return <AppNavigator />;
 }

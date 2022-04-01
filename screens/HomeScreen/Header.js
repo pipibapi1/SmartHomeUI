@@ -16,7 +16,7 @@ export default function Header() {
             alert("Go to user information screen!");
           }}
         >
-          <Image style={styles.img} source={require("./assets/quan.png")} />
+          <Image style={styles.img} source={require("../assets/quan.png")} />
         </TouchableOpacity>
         <Text style={styles.text}>Quân</Text>
       </SafeAreaView>
@@ -26,9 +26,9 @@ export default function Header() {
 
 const styles = StyleSheet.create({
   img: {
-    width: 55,
-    height: 52,
-    borderRadius: 52 / 2,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
   text: {
     backgroundColor: "transparent",
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     height: "8%",
   },
   info: {
-    width: "28%",
-    height: "80%",
+    width: 110,
+    height: 54,
     marginLeft: "65%",
     marginTop: "2%",
     flexDirection: "row",

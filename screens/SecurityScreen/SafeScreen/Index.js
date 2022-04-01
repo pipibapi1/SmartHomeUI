@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import * as React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import Header from "./Header";
-import MyHome from "./MyHome";
-import Features from "./Features";
-import Footer from "./Footer";
-import Body from "./Body";
+import Header from "./Header.js";
+import Title from "./Title.js";
+import Safe from "./Safe.js";
+import SSButton from "./SSButton.js";
+import Footer from "./Footer.js";
 
-function Index({ navigation }) {
+export default function Index({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -17,8 +17,10 @@ function Index({ navigation }) {
         style={styles.background}
       />
       <Header />
-      <Body navigation={navigation} />
-      <Footer />
+      <Title />
+      <Safe />
+      <SSButton navigation={navigation} />
+      <Footer navigation={navigation} />
     </SafeAreaView>
   );
 }
@@ -46,4 +48,3 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-export default Index;

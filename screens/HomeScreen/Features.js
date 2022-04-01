@@ -7,85 +7,98 @@ import {
   Image,
 } from "react-native";
 
-export default function Features() {
+export default function Features({ navigation, temp, humid }) {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.content}>
         <Text style={styles.text}>Features</Text>
         <SafeAreaView style={styles.buttonsWrapper}>
           <SafeAreaView style={styles.buttons}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                alert("Go to climate screen!");
-              }}
-            >
-              <Image
-                style={styles.temp_img}
-                source={require("./assets/temp.png")}
-              />
-              <Text style={styles.buttonText}>Climate</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                alert("Go to light screen!");
-              }}
-            >
-              <Image
-                style={styles.light_img}
-                source={require("./assets/light.png")}
-              />
-              <Text style={styles.buttonText}>Light</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                alert("Go to gas screen!");
-              }}
-            >
-              <Image
-                style={styles.flame_img}
-                source={require("./assets/flame.png")}
-              />
-              <Text style={styles.buttonText}>Gas</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                alert("Go to security screen!");
-              }}
-            >
-              <Image
-                style={styles.security_img}
-                source={require("./assets/security.png")}
-              />
-              <Text style={styles.buttonText}>Security</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                alert("Go to statistic screen!");
-              }}
-            >
-              <Image
-                style={styles.statistic_img}
-                source={require("./assets/statistic.png")}
-              />
-              <Text style={styles.buttonText}>Statistic</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                alert("Go to notification screen!");
-              }}
-            >
-              <Image
-                style={styles.notification_img}
-                source={require("./assets/notification.png")}
-              />
-              <Text style={styles.buttonText}>Notification</Text>
-            </TouchableOpacity>
+            <SafeAreaView style={styles.button}>
+              <TouchableOpacity
+                style={styles.inner}
+                onPress={() => {
+                  navigation.navigate("Climate", { temp: temp, humid: humid });
+                }}
+              >
+                <Image
+                  style={styles.temp_img}
+                  source={require("../assets/temp.png")}
+                />
+                <Text style={styles.buttonText}>Climate</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
+
+            <SafeAreaView style={styles.button}>
+              <TouchableOpacity
+                style={styles.inner}
+                onPress={() => {
+                  alert("Go to light screen!");
+                }}
+              >
+                <Image
+                  style={styles.light_img}
+                  source={require("../assets/light.png")}
+                />
+                <Text style={styles.buttonText}>Light</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
+            <SafeAreaView style={styles.button}>
+              <TouchableOpacity
+                style={styles.inner}
+                onPress={() => {
+                  alert("Go to gas screen!");
+                }}
+              >
+                <Image
+                  style={styles.flame_img}
+                  source={require("../assets/flame.png")}
+                />
+                <Text style={styles.buttonText}>Gas</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
+            <SafeAreaView style={styles.button}>
+              <TouchableOpacity
+                style={styles.inner}
+                onPress={() => {
+                  navigation.navigate("Alarm");
+                }}
+              >
+                <Image
+                  style={styles.security_img}
+                  source={require("../assets/security.png")}
+                />
+                <Text style={styles.buttonText}>Security</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
+            <SafeAreaView style={styles.button}>
+              <TouchableOpacity
+                style={styles.inner}
+                onPress={() => {
+                  alert("Go to statistic screen!");
+                }}
+              >
+                <Image
+                  style={styles.statistic_img}
+                  source={require("../assets/statistic.png")}
+                />
+                <Text style={styles.buttonText}>Statistic</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
+            <SafeAreaView style={styles.button}>
+              <TouchableOpacity
+                style={styles.inner}
+                onPress={() => {
+                  navigation.navigate("Notification");
+                }}
+              >
+                <Image
+                  style={styles.notification_img}
+                  source={require("../assets/notification.png")}
+                />
+                <Text style={styles.buttonText}>Notification</Text>
+              </TouchableOpacity>
+            </SafeAreaView>
           </SafeAreaView>
         </SafeAreaView>
       </SafeAreaView>
@@ -97,7 +110,7 @@ const styles = StyleSheet.create({
   container: {
     //backgroundColor: "purple",
     width: "100%",
-    height: "48%",
+    height: "63%",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -117,18 +130,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   buttons: {
-    width: "84%",
+    width: "94%",
     height: "100%",
-    // backgroundColor: "purple",
+    //backgroundColor: "purple",
     flexDirection: "row",
     flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "space-between",
   },
   button: {
+    //backgroundColor: "red",
+    width: "50%",
+    height: "33.3%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  inner: {
     backgroundColor: "#575252",
-    width: "45%",
-    height: "25%",
+    width: "90%",
+    height: "90%",
     borderRadius: 10,
     alignItems: "center",
     justifyContent: "center",
@@ -145,27 +163,27 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   temp_img: {
-    width: 36,
-    height: 50,
+    width: "23%",
+    height: "60%",
   },
   light_img: {
-    width: 36,
-    height: 50,
+    width: "25%",
+    height: "60%",
   },
   flame_img: {
-    width: 36,
-    height: 50,
+    width: "32%",
+    height: "60%",
   },
   security_img: {
-    width: 36,
-    height: 50,
+    width: "32%",
+    height: "60%",
   },
   statistic_img: {
-    width: 50,
-    height: 48,
+    width: "38%",
+    height: "52%",
   },
   notification_img: {
-    width: 45,
-    height: 46,
+    width: "40%",
+    height: "58%",
   },
 });

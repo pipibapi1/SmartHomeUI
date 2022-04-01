@@ -6,8 +6,11 @@ export default function Title() {
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.wrapper}>
         <SafeAreaView style={styles.title}>
-          <Image style={styles.img} source={require("../assets/temp.png")} />
-          <Text style={styles.titleText}>Climate</Text>
+          <Image
+            style={styles.img}
+            source={require("../assets/security.png")}
+          />
+          <Text style={styles.titleText}>Security</Text>
         </SafeAreaView>
       </SafeAreaView>
     </SafeAreaView>

@@ -6,8 +6,11 @@ export default function Title() {
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.wrapper}>
         <SafeAreaView style={styles.title}>
-          <Image style={styles.img} source={require("../assets/temp.png")} />
-          <Text style={styles.titleText}>Climate</Text>
+          <Image
+            style={styles.img}
+            source={require("../assets/notification.png")}
+          />
+          <Text style={styles.titleText}>Notifications</Text>
         </SafeAreaView>
       </SafeAreaView>
     </SafeAreaView>
@@ -31,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   title: {
-    width: "38%",
+    width: "54%",
     height: "100%",
     //backgroundColor: "yellow",
     flexDirection: "row",
@@ -45,7 +48,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   img: {
-    width: 47,
-    height: 62,
+    width: 49,
+    height: 52,
   },
 });

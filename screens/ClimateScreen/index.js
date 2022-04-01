@@ -7,7 +7,8 @@ import Title from "./Title.js";
 import ClimateInfo from "./ClimateInfo.js";
 import Footer from "./Footer.js";
 
-export default function index() {
+export default function Index({ route, navigation }) {
+  const { temp, humid } = route.params;
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -17,8 +18,8 @@ export default function index() {
       />
       <Header />
       <Title />
-      <ClimateInfo />
-      <Footer />
+      <ClimateInfo temp={temp} humid={humid} />
+      <Footer navigation={navigation} />
     </SafeAreaView>
   );
 }

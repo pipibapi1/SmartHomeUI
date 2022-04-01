@@ -17,7 +17,7 @@ export default function Footer() {
       >
         <Image
           style={styles.home_image}
-          source={require("./assets/home.png")}
+          source={require("../assets/home.png")}
         />
       </TouchableOpacity>
     </SafeAreaView>
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   home_image: {
-    width: "60%",
-    height: "60%",
+    width: "58%",
+    height: "70%",
   },
   text: {
     backgroundColor: "transparent",
