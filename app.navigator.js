@@ -7,6 +7,8 @@ import SafeScreen from "./screens/SecurityScreen/SafeScreen/Index.js";
 import AlarmScreen from "./screens/SecurityScreen/AlarmScreen/Index.js";
 import SettingScreen from "./screens/SecurityScreen/SettingScreen/Index.js";
 import NotificationScreen from "./screens/NotificationScreen/Index.js";
+import ProfileScreen from "./screens/ProfileScreen/index.js";
+import GasScreen from "./screens/GasScreen/index.js";
 const { Navigator, Screen } = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -24,6 +26,8 @@ const AppNavigator = () => {
         <Screen name="Safe" component={SafeScreen}></Screen>
         <Screen name="Alarm" component={AlarmScreen}></Screen>
         <Screen name="Setting" component={SettingScreen}></Screen>
+        <Screen name="Profile" component={ProfileScreen}></Screen>
+        <Screen name="Gas" component={GasScreen}></Screen>
       </Navigator>
     </NavigationContainer>
   );

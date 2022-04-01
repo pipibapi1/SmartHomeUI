@@ -2,13 +2,13 @@ import * as React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import Header from "./Header.js";
-import Title from "./Title.js";
-import Safe from "./Safe.js";
-import SSButton from "./SSButton.js";
-import Footer from "./Footer.js";
+import Header from "./Header";
+import Footer from "./Footer";
+import Gas_icon from "./Gas_icon";
+import Threshold from "./Threshold";
+import Light from "./Light";
 
-export default function Index({ navigation }) {
+export default function Gas({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -17,9 +17,9 @@ export default function Index({ navigation }) {
         style={styles.background}
       />
       <Header navigation={navigation} />
-      <Title />
-      <Safe />
-      <SSButton navigation={navigation} />
+      <Gas_icon />
+      <Threshold />
+      <Light />
       <Footer navigation={navigation} />
     </SafeAreaView>
   );

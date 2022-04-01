@@ -15,7 +15,7 @@ export default function Index({ navigation }) {
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
       />
-      <Header />
+      <Header navigation={navigation} />
       <Title />
       <NotificationList />
       <Footer navigation={navigation} />

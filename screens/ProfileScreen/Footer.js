@@ -7,18 +7,11 @@ import {
   Image,
 } from "react-native";
 
-export default function Header({ navigation }) {
+export default function Footer() {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.info}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Profile");
-          }}
-        >
-          <Image style={styles.img} source={require("../assets/quan.png")} />
-        </TouchableOpacity>
-        <Text style={styles.text}>Quân</Text>
+        <Image style={styles.img} source={require("./assets/exit.png")} />
       </SafeAreaView>
     </SafeAreaView>
   );
@@ -26,9 +19,9 @@ export default function Header({ navigation }) {
 
 const styles = StyleSheet.create({
   img: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    marginTop: "30px",
+    width: 55,
+    height: 52,
   },
   text: {
     backgroundColor: "transparent",
@@ -36,17 +29,13 @@ const styles = StyleSheet.create({
     color: "#FDA43C",
   },
   container: {
-    //backgroundColor: "blue",
     width: "100%",
     height: "8%",
   },
   info: {
-    width: 110,
-    height: 54,
-    marginLeft: "65%",
-    marginTop: "2%",
+    marginLeft: "8%",
+    marginTop: "300px",
     flexDirection: "row",
-    //backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
     justifyContent: "space-between",

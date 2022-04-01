@@ -2,25 +2,25 @@ import * as React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import Header from "./Header.js";
-import Title from "./Title.js";
-import Safe from "./Safe.js";
-import SSButton from "./SSButton.js";
-import Footer from "./Footer.js";
+import Header from "./Header";
+import Profile from "./profile";
+import Form from "./Form";
+import Footer from "./Footer";
 
-export default function Index({ navigation }) {
+export default function index({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
-        // Background Linear Gradient
+        Background
+        Linear
+        Gradient
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
       />
       <Header navigation={navigation} />
-      <Title />
-      <Safe />
-      <SSButton navigation={navigation} />
-      <Footer navigation={navigation} />
+      <Profile />
+      <Form />
+      <Footer />
     </SafeAreaView>
   );
 }
@@ -46,5 +46,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: "#FDA43C",
     fontWeight: "bold",
+    fontFamily: "Roboto",
   },
 });

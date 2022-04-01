@@ -7,13 +7,13 @@ import {
   Image,
 } from "react-native";
 
-export default function Header() {
+export default function Header({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.info}>
         <TouchableOpacity
           onPress={() => {
-            alert("Go to user information screen!");
+            navigation.navigate("Profile");
           }}
         >
           <Image style={styles.img} source={require("../assets/quan.png")} />

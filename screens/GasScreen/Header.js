@@ -16,9 +16,9 @@ export default function Header({ navigation }) {
             navigation.navigate("Profile");
           }}
         >
-          <Image style={styles.img} source={require("../assets/quan.png")} />
+          <Image style={styles.img} source={require("./assets/profile.jpg")} />
         </TouchableOpacity>
-        <Text style={styles.text}>Quân</Text>
+        <Text style={styles.text}>Name</Text>
       </SafeAreaView>
     </SafeAreaView>
   );
@@ -26,9 +26,9 @@ export default function Header({ navigation }) {
 
 const styles = StyleSheet.create({
   img: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 55,
+    height: 52,
+    borderRadius: 52 / 2,
   },
   text: {
     backgroundColor: "transparent",
@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
     height: "8%",
   },
   info: {
-    width: 110,
-    height: 54,
+    width: "28%",
+    height: "80%",
     marginLeft: "65%",
     marginTop: "2%",
     flexDirection: "row",

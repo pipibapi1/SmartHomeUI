@@ -13,12 +13,12 @@ export default function Header({ navigation }) {
       <SafeAreaView style={styles.info}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Profile");
+            navigation.navigate("Home");
           }}
         >
-          <Image style={styles.img} source={require("../assets/quan.png")} />
+          <Image style={styles.img} source={require("./assets/undo.png")} />
         </TouchableOpacity>
-        <Text style={styles.text}>Quân</Text>
+        <Text style={styles.text}>Bio-data</Text>
       </SafeAreaView>
     </SafeAreaView>
   );
@@ -26,29 +26,26 @@ export default function Header({ navigation }) {
 
 const styles = StyleSheet.create({
   img: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 38,
+    height: 38,
   },
   text: {
     backgroundColor: "transparent",
     fontSize: 20,
     color: "#FDA43C",
+    fontFamily: "Roboto",
+    marginLeft: "25%",
   },
   container: {
-    //backgroundColor: "blue",
     width: "100%",
     height: "8%",
   },
   info: {
-    width: 110,
-    height: 54,
-    marginLeft: "65%",
+    width: "100%",
+    height: "80%",
+    marginLeft: "8%",
     marginTop: "2%",
     flexDirection: "row",
-    //backgroundColor: "red",
     alignItems: "center",
-    justifyContent: "center",
-    justifyContent: "space-between",
   },
 });
