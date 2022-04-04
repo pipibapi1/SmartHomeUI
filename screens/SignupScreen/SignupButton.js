@@ -7,14 +7,14 @@ import {
   Image,
 } from "react-native";
 
-export default function SignupButton() {
+export default function SignupButton({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.info}>
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          alert("STAY!");
+          navigation.navigate("Login");
         }}
       >
         <Image style={styles.img} source={require("./assets/signupbutton.png")} />

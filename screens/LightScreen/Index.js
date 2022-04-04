@@ -2,13 +2,12 @@ import * as React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-import Header from "./Header";
-import Form from "./Form";
-import ForgotPassword from "./ForgotPassword";
-import LoginButton from "./LoginButton";
-import Footer from "./Footer";
+import Header from "./Header.js";
+import Title from "./Title.js";
+import Roomlist from "./Roomlist.js";
+import Footer from "./Footer.js";
 
-export default function index({ navigation }) {
+export default function Index({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -16,10 +15,9 @@ export default function index({ navigation }) {
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
       />
-      <Header  navigation={navigation}/>
-      <Form />
-      <ForgotPassword  navigation={navigation}/>
-      <LoginButton navigation={navigation} />
+      <Header navigation={navigation} />
+      <Title navigation={navigation} />
+      <Roomlist />
       <Footer navigation={navigation} />
     </SafeAreaView>
   );

@@ -10,42 +10,30 @@ import {
 export default function Header({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.info}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Login");
+            navigation.navigate("Profile");
           }}
         >
-          <Image style={styles.img} source={require("./assets/backicon.png")} />
+          <Image style={styles.img} source={require("./assets/profile.jpg")} />
         </TouchableOpacity>
-        <Text style={styles.text}>Forgot Password?</Text>
-        <Text style={styles.text1}>Recover you password if you have forgot the password!</Text>
+        <Text style={styles.text}>Hehe</Text>
+      </SafeAreaView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   img: {
-    width: 38,
-    height: 38,
-    borderRadius: 52 / 2,
-    marginLeft: "30px",
-    marginTop: "60px"
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
   text: {
     backgroundColor: "transparent",
-    marginTop: "30px",
-    marginLeft: "30px",
+    fontSize: 20,
     color: "#FDA43C",
-    fontSize: "30px",
-    fontWeight: "bold"
-  },  
-  text1: {
-    backgroundColor: "transparent",
-    marginTop: "15px",
-    marginLeft: "30px",
-    color: "#FFFFFF",
-    fontSize: "17px",
-    paddingRight: "100px"
   },
   container: {
     //backgroundColor: "blue",
@@ -53,8 +41,8 @@ const styles = StyleSheet.create({
     height: "8%",
   },
   info: {
-    width: "28%",
-    height: "80%",
+    width: 110,
+    height: 54,
     marginLeft: "65%",
     marginTop: "2%",
     flexDirection: "row",

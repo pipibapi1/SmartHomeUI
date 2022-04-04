@@ -9,28 +9,19 @@ import {
   
 } from "react-native";
 
-// export default function Header() {
-//   return (
-//     <SafeAreaView style={styles.container}>
-//       <SafeAreaView style={styles.info}>
-//         <TouchableOpacity
-//           onPress={() => {
-//             alert("Go to user information screen!");
-//           }}
-//         >
-//           <Image style={styles.img} source={require("./assets/quan.png")} />
-//         </TouchableOpacity>
-//         <Text style={styles.text}>Quân</Text>
-//       </SafeAreaView>
-//     </SafeAreaView>
-//   );
-// }
 
 
-export default function ForgotPassword() {
+export default function ForgotPassword({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("ForgotPassword");
+          }}
+        >
         <Text style={styles.text}>Forgot Password?</Text>
+        </TouchableOpacity>
     </SafeAreaView>
   );
 }

@@ -9,7 +9,7 @@ import Footer from "./Footer";
 
 
 
-export default function index() {
+export default function index({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -17,10 +17,10 @@ export default function index() {
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
       />    
-      <Header />
+      <Header  navigation={navigation}/>
       <Form />
-      <SignupButton/>
-      <Footer />
+      <SignupButton navigation={navigation}/>
+      <Footer navigation={navigation}/>
     </SafeAreaView>
   );
 }

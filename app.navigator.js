@@ -9,9 +9,10 @@ import SettingScreen from "./screens/SecurityScreen/SettingScreen/Index.js";
 import NotificationScreen from "./screens/NotificationScreen/Index.js";
 import ProfileScreen from "./screens/ProfileScreen/index.js";
 import GasScreen from "./screens/GasScreen/index.js";
-import Login from "./screens/LoginScreen/index.js";
-import Signup from "./screens/SignupScreen/index.js";
-import ForgotPassword from "./screens/LoginScreen/ForgotPassword.js";
+import Login from "./screens/LoginScreen/Index.js";
+import Signup from "./screens/SignupScreen/Index.js";
+import ForgotPassword from "./screens/ForgotPasswordScreen/Index.js";
+import LightScreen from "./screens/LightScreen/Index.js";
 const { Navigator, Screen } = createNativeStackNavigator();
 
 const AppNavigator = () => {
@@ -34,6 +35,7 @@ const AppNavigator = () => {
         <Screen name="Login" component={Login}></Screen>
         <Screen name="Signup" component={Signup}></Screen>
         <Screen name="ForgotPassword" component={ForgotPassword}></Screen>
+        <Screen name="Light" component={LightScreen}></Screen>
       </Navigator>
     </NavigationContainer>
   );

@@ -33,7 +33,7 @@ export default function Features({ navigation, temp, humid }) {
               <TouchableOpacity
                 style={styles.inner}
                 onPress={() => {
-                  alert("Go to light screen!");
+                  navigation.navigate("Light");
                 }}
               >
                 <Image

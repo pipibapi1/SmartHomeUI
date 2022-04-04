@@ -7,12 +7,22 @@ import {
   Text
 } from "react-native";
 
-export default function Footer() {
+
+
+
+export default function Footer({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
         <Image style={styles.img_line} source={require("./assets/Line 1.png")} />
         <Text style={styles.text}>Don't have an account?</Text>
-        <Text style={styles.text1}>Register</Text>    
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            navigation.navigate("Signup");
+          }}
+        >
+        <Text style={styles.text1}>Register</Text> 
+        </TouchableOpacity>     
     </SafeAreaView>
   );
 }

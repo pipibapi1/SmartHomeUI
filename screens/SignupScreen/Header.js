@@ -7,12 +7,13 @@ import {
   Image,
 } from "react-native";
 
-export default function Header() {
+export default function Header({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
         <TouchableOpacity
+          style={styles.button}
           onPress={() => {
-            alert("Go to user information screen!");
+            navigation.navigate("Login");
           }}
         >
           <Image style={styles.img} source={require("./assets/backicon.png")} />
