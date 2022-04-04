@@ -19,7 +19,7 @@ export default function Footer() {
 
 const styles = StyleSheet.create({
   img: {
-    marginTop: "30px",
+    marginBottom: "-800px",
     width: 55,
     height: 52,
   },
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
   },
   info: {
     marginLeft: "8%",
-    marginTop: "300px",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
