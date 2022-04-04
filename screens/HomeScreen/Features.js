@@ -75,7 +75,7 @@ export default function Features({ navigation, temp, humid }) {
               <TouchableOpacity
                 style={styles.inner}
                 onPress={() => {
-                  alert("Go to statistic screen!");
+                  navigation.navigate("Statistic");
                 }}
               >
                 <Image
