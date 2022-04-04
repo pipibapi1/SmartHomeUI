@@ -7,18 +7,20 @@ import Profile from "./profile";
 import Form from "./Form";
 import Footer from "./Footer";
 
-export default function Home() {
+export default function index({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-    <LinearGradient
-    Background Linear Gradient
-         colors={["#575252", "#282828", "#000000"]}
-         style={styles.background}
-       />
-        <Header />
-        <Profile />
-        <Form />
-        <Footer />
+      <LinearGradient
+        Background
+        Linear
+        Gradient
+        colors={["#575252", "#282828", "#000000"]}
+        style={styles.background}
+      />
+      <Header navigation={navigation} />
+      <Profile />
+      <Form />
+      <Footer />
     </SafeAreaView>
   );
 }
@@ -44,6 +46,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: "#FDA43C",
     fontWeight: "bold",
-    fontFamily: "Roboto"
+    fontFamily: "Roboto",
   },
 });

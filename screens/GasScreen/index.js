@@ -8,7 +8,7 @@ import Gas_icon from "./Gas_icon";
 import Threshold from "./Threshold";
 import Light from "./Light";
 
-export default function Gas() {
+export default function Gas({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -16,11 +16,11 @@ export default function Gas() {
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
       />
-      <Header />
+      <Header navigation={navigation} />
       <Gas_icon />
       <Threshold />
       <Light />
-      <Footer />
+      <Footer navigation={navigation} />
     </SafeAreaView>
   );
 }

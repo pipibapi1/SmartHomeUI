@@ -7,16 +7,16 @@ import {
   Image,
 } from "react-native";
 
-export default function Header() {
+export default function Header({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.info}>
         <TouchableOpacity
           onPress={() => {
-            alert("Go to user information screen!");
+            navigation.navigate("Home");
           }}
         >
-        <Image style={styles.img} source={require("./assets/undo.png")} />
+          <Image style={styles.img} source={require("./assets/undo.png")} />
         </TouchableOpacity>
         <Text style={styles.text}>Bio-data</Text>
       </SafeAreaView>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "#FDA43C",
     fontFamily: "Roboto",
-    marginLeft: "25%"
+    marginLeft: "25%",
   },
   container: {
     width: "100%",

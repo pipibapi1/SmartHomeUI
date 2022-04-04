@@ -1,6 +1,6 @@
-import Profile from "./screens/ProfileScreen/index.js";
-import Gas from "./screens/GasScreen/index.js";
+import AppNavigator from "./app.navigator.js";
+import React from "react";
 
 export default function App() {
-  return <Profile />;
+  return <AppNavigator />;
 }
