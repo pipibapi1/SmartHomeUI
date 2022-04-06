@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,8 +6,10 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import AppContext from "../AppContext.js";
+export default function Features({ navigation }) {
+  const myContext = useContext(AppContext);
 
-export default function Features({ navigation, temp, humid }) {
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.content}>
@@ -18,7 +20,7 @@ export default function Features({ navigation, temp, humid }) {
               <TouchableOpacity
                 style={styles.inner}
                 onPress={() => {
-                  navigation.navigate("Climate", { temp: temp, humid: humid });
+                  navigation.navigate("Climate");
                 }}
               >
                 <Image
@@ -33,7 +35,7 @@ export default function Features({ navigation, temp, humid }) {
               <TouchableOpacity
                 style={styles.inner}
                 onPress={() => {
-                  alert("Go to light screen!");
+                  navigation.navigate("Light");
                 }}
               >
                 <Image
@@ -61,7 +63,11 @@ export default function Features({ navigation, temp, humid }) {
               <TouchableOpacity
                 style={styles.inner}
                 onPress={() => {
-                  navigation.navigate("Alarm");
+                  if (myContext.door1Alert == 1) {
+                    navigation.navigate("Alarm");
+                  } else {
+                    navigation.navigate("Safe");
+                  }
                 }}
               >
                 <Image

@@ -6,10 +6,15 @@ import {
   Image,
 } from "react-native";
 
-export default function Footer() {
+export default function Footer({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate("Home");
+        }}
+      >
         <Image
           style={styles.home_image}
           source={require("../assets/home.png")}

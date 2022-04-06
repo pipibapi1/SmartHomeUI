@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import Header from "./Header.js";
 import Title from "./Title.js";
-import ClimateInfo from "./ClimateInfo.js";
+import Roomlist from "./Roomlist.js";
 import Footer from "./Footer.js";
 
 export default function Index({ navigation }) {
@@ -16,8 +16,8 @@ export default function Index({ navigation }) {
         style={styles.background}
       />
       <Header navigation={navigation} />
-      <Title />
-      <ClimateInfo />
+      <Title navigation={navigation} />
+      <Roomlist />
       <Footer navigation={navigation} />
     </SafeAreaView>
   );

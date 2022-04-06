@@ -16,11 +16,11 @@ export default function index({ navigation }) {
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
       />
-      <Header />
+      <Header  navigation={navigation}/>
       <Form />
-      <ForgotPassword />
+      <ForgotPassword  navigation={navigation}/>
       <LoginButton navigation={navigation} />
-      <Footer />
+      <Footer navigation={navigation} />
     </SafeAreaView>
   );
 }

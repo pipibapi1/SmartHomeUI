@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useContext } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -6,8 +6,9 @@ import {
   Image,
   Text,
 } from "react-native";
-
+import AppContext from "../AppContext.js";
 export default function Alarm({ navigation }) {
+  const myContext = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.imgWrapper}>
@@ -18,6 +19,7 @@ export default function Alarm({ navigation }) {
           style={styles.button}
           onPress={() => {
             navigation.navigate("Safe");
+            myContext.SetDoor1Alert(0);
           }}
         >
           <Text style={styles.buttonText}>Remove Alarm</Text>

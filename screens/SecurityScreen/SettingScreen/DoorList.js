@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -7,24 +7,11 @@ import {
   Switch,
   ScrollView,
 } from "react-native";
+import AppContext from "../AppContext.js";
 
 export default function DoorList() {
-  const [switchValue1, setswitchValue1] = useState(false);
-  const [switchValue2, setswitchValue2] = useState(false);
-  const [switchValue3, setswitchValue3] = useState(false);
-  const [switchValue4, setswitchValue4] = useState(false);
-  const toggleSwitch1 = (value) => {
-    setswitchValue1(value);
-  };
-  const toggleSwitch2 = (value) => {
-    setswitchValue2(value);
-  };
-  const toggleSwitch3 = (value) => {
-    setswitchValue3(value);
-  };
-  const toggleSwitch4 = (value) => {
-    setswitchValue4(value);
-  };
+  const myContext = useContext(AppContext);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.wrapper}>
@@ -40,11 +27,13 @@ export default function DoorList() {
             <SafeAreaView style={styles.door_info_wrapper}>
               <Text style={styles.door_info}>Door 1</Text>
               <Text style={styles.door_info}>
-                {switchValue1 ? "Safe mode: On" : "Safe mode: Off"}
+                {myContext.doorSwitchValue1
+                  ? "Safe mode: On"
+                  : "Safe mode: Off"}
               </Text>
               <Switch
-                onValueChange={toggleSwitch1}
-                value={switchValue1}
+                onValueChange={myContext.doorToggleSwitch1}
+                value={myContext.doorSwitchValue1}
                 trackColor={{ true: "blue", false: "red" }}
               />
             </SafeAreaView>
@@ -63,11 +52,13 @@ export default function DoorList() {
             <SafeAreaView style={styles.door_info_wrapper}>
               <Text style={styles.door_info}>Door 2</Text>
               <Text style={styles.door_info}>
-                {switchValue2 ? "Safe mode: On" : "Safe mode: Off"}
+                {myContext.doorSwitchValue2
+                  ? "Safe mode: On"
+                  : "Safe mode: Off"}
               </Text>
               <Switch
-                onValueChange={toggleSwitch2}
-                value={switchValue2}
+                onValueChange={myContext.doorToggleSwitch2}
+                value={myContext.doorSwitchValue2}
                 trackColor={{ true: "blue", false: "red" }}
               />
             </SafeAreaView>
@@ -86,11 +77,13 @@ export default function DoorList() {
             <SafeAreaView style={styles.door_info_wrapper}>
               <Text style={styles.door_info}>Door 3</Text>
               <Text style={styles.door_info}>
-                {switchValue3 ? "Safe mode: On" : "Safe mode: Off"}
+                {myContext.doorSwitchValue3
+                  ? "Safe mode: On"
+                  : "Safe mode: Off"}
               </Text>
               <Switch
-                onValueChange={toggleSwitch3}
-                value={switchValue3}
+                onValueChange={myContext.doorToggleSwitch3}
+                value={myContext.doorSwitchValue3}
                 trackColor={{ true: "blue", false: "red" }}
               />
             </SafeAreaView>
@@ -109,55 +102,13 @@ export default function DoorList() {
             <SafeAreaView style={styles.door_info_wrapper}>
               <Text style={styles.door_info}>Door 4</Text>
               <Text style={styles.door_info}>
-                {switchValue4 ? "Safe mode: On" : "Safe mode: Off"}
+                {myContext.doorSwitchValue4
+                  ? "Safe mode: On"
+                  : "Safe mode: Off"}
               </Text>
               <Switch
-                onValueChange={toggleSwitch4}
-                value={switchValue4}
-                trackColor={{ true: "blue", false: "red" }}
-              />
-            </SafeAreaView>
-          </SafeAreaView>
-        </SafeAreaView>
-        {/*Door 4*/}
-        <SafeAreaView style={styles.card}>
-          <SafeAreaView style={styles.inner}>
-            <SafeAreaView style={styles.door_img_wrapper}>
-              <Image
-                style={styles.door_img}
-                source={require("../assets/Door4.png")}
-              />
-            </SafeAreaView>
-            <SafeAreaView style={styles.door_info_wrapper}>
-              <Text style={styles.door_info}>Door 4</Text>
-              <Text style={styles.door_info}>
-                {switchValue4 ? "Safe mode: On" : "Safe mode: Off"}
-              </Text>
-              <Switch
-                onValueChange={toggleSwitch4}
-                value={switchValue4}
-                trackColor={{ true: "blue", false: "red" }}
-              />
-            </SafeAreaView>
-          </SafeAreaView>
-        </SafeAreaView>
-        {/*Door 4*/}
-        <SafeAreaView style={styles.card}>
-          <SafeAreaView style={styles.inner}>
-            <SafeAreaView style={styles.door_img_wrapper}>
-              <Image
-                style={styles.door_img}
-                source={require("../assets/Door4.png")}
-              />
-            </SafeAreaView>
-            <SafeAreaView style={styles.door_info_wrapper}>
-              <Text style={styles.door_info}>Door 4</Text>
-              <Text style={styles.door_info}>
-                {switchValue4 ? "Safe mode: On" : "Safe mode: Off"}
-              </Text>
-              <Switch
-                onValueChange={toggleSwitch4}
-                value={switchValue4}
+                onValueChange={myContext.doorToggleSwitch4}
+                value={myContext.doorSwitchValue4}
                 trackColor={{ true: "blue", false: "red" }}
               />
             </SafeAreaView>

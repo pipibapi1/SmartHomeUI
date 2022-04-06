@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import * as React from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -6,33 +6,17 @@ import {
   Text,
   TouchableOpacity,
 } from "react-native";
-import AppContext from "../AppContext.js";
+
 export default function Title({ navigation }) {
-  const myContext = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.wrapper}>
-        <TouchableOpacity
-          style={styles.inner}
-          onPress={() => {
-            if (myContext.door1Alert == 1) {
-              navigation.navigate("Alarm");
-            } else {
-              navigation.navigate("Safe");
-            }
-          }}
-        >
-          <Image
-            style={styles.back_img}
-            source={require("../assets/back.png")}
-          />
-        </TouchableOpacity>
         <SafeAreaView style={styles.title}>
           <Image
-            style={styles.setting_img}
-            source={require("../assets/setting.png")}
+            style={styles.img}
+            source={require("./assets/light-bulb.png")}
           />
-          <Text style={styles.setting_text}>Security Setting</Text>
+          <Text style={styles.light_text}>Light</Text>
         </SafeAreaView>
       </SafeAreaView>
     </SafeAreaView>
@@ -66,22 +50,24 @@ const styles = StyleSheet.create({
     width: "80%",
     height: "30%",
   },
-  setting_img: {
-    width: "25%",
-    height: "85%",
+  img: {
+    width: "35%",
+    height: "100%",
   },
-  setting_text: {
+  light_text: {
     backgroundColor: "transparent",
-    fontSize: 20,
-    color: "#ffffff",
+    fontSize: 25,
+    color: "#FDA43C",
+    marginLeft: "80px",
+    marginTop: "-80px",
     fontWeight: "bold",
   },
   title: {
     //backgroundColor: "red",
     width: "70%",
     height: "80%",
-    flexDirection: "row",
-    alignItems: "center",
+    marginLeft: "10px",
+    marginTop: "-40px",
     justifyContent: "space-between",
   },
 });
