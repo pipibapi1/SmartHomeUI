@@ -20,6 +20,7 @@ export default function DoorList() {
   const clientId = "mqtt_06092001_switchlight";
   const connectUrl = `mqtt://${host}:${ada_port}`;
   const switchlight_topic = "duy1711ak/feeds/iot-switchlight";
+  const autolight_topic = "duy1711ak/feeds/iot-lightsys";
 
   const mqtt = require("mqtt");
 
@@ -34,8 +35,9 @@ export default function DoorList() {
 
   client.on("connect", () => {
     console.log("Feeds Connected");
-    client.subscribe([switchlight_topic], () => {
+    client.subscribe([switchlight_topic, autolight_topic], () => {
       console.log(`Subscribe to topic '${switchlight_topic}'`);
+      console.log(`Subscribe to topic '${autolight_topic}'`);
     });
   });
 
@@ -44,12 +46,24 @@ export default function DoorList() {
   });
 
   const LightButtonClick1 = () => {
+    if (myContext.lightSwitchValue1 == true) {
+      client.publish(autolight_topic, "0");
+    }
     if (myContext.lightButtonValue1 == true) {
       myContext.lightButtonClick1();
       client.publish(switchlight_topic, "0");
     } else {
       myContext.lightButtonClick1();
       client.publish(switchlight_topic, "1");
+    }
+  };
+  const LightSwitchToggle1 = () => {
+    if (myContext.lightSwitchValue1 == true) {
+      myContext.lightToggleSwitch1(false);
+      client.publish(autolight_topic, "0");
+    } else {
+      myContext.lightToggleSwitch1(true);
+      client.publish(autolight_topic, "1");
     }
   };
   const light_on = (
@@ -78,7 +92,7 @@ export default function DoorList() {
               />
               <Switch
                 style={styles.toggle}
-                onValueChange={myContext.lightToggleSwitch1}
+                onValueChange={LightSwitchToggle1}
                 value={myContext.lightSwitchValue1}
                 trackColor={{ true: "blue", false: "red" }}
               />

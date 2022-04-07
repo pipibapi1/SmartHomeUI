@@ -2,8 +2,8 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 //Quan
-import HomeScreen from "./screens/HomeScreen/Index.js";
-import ClimateScreen from "./screens/ClimateScreen/Index.js";
+import HomeScreen from "./screens/HomeScreen/index.js";
+import ClimateScreen from "./screens/ClimateScreen/index.js";
 import SafeScreen from "./screens/SecurityScreen/SafeScreen/Index.js";
 import AlarmScreen from "./screens/SecurityScreen/AlarmScreen/Index.js";
 import SettingScreen from "./screens/SecurityScreen/SettingScreen/Index.js";

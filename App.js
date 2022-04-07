@@ -9,15 +9,19 @@ export default function App() {
   const [gasWarning, setGasWarning] = useState(0);
   const [door1Alert, setDoor1Alert] = useState(0);
   const [numLightOn, setNumLightOn] = useState(0);
+
   const [lightButtonValue1, setLightButtonValue1] = useState(false);
   const [lightButtonValue2, setLightButtonValue2] = useState(false);
   const [lightButtonValue3, setLightButtonValue3] = useState(false);
   const [lightButtonValue4, setLightButtonValue4] = useState(false);
+
   const [lightSwitchValue1, setLightSwitchValue1] = useState(false);
   const [lightSwitchValue2, setLightSwitchValue2] = useState(false);
   const [lightSwitchValue3, setLightSwitchValue3] = useState(false);
   const [lightSwitchValue4, setLightSwitchValue4] = useState(false);
+
   const [numDoorOn, setNumDoorOn] = useState(0);
+
   const [doorSwitchValue1, setDoorSwitchValue1] = useState(false);
   const [doorSwitchValue2, setDoorSwitchValue2] = useState(false);
   const [doorSwitchValue3, setDoorSwitchValue3] = useState(false);

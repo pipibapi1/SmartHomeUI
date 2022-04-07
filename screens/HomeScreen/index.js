@@ -20,6 +20,8 @@ function Index({ navigation }) {
   const door_topic = "duy1711ak/feeds/iot-door";
   const gas_topic = "duy1711ak/feeds/iot-gas";
   const switchlight_topic = "duy1711ak/feeds/iot-switchlight";
+  const autolight_topic = "duy1711ak/feeds/iot-lightsys";
+  const autodoor_topic = "duy1711ak/feeds/iot-secu";
 
   const mqtt = require("mqtt");
   const Swal = require("sweetalert2");
@@ -36,13 +38,23 @@ function Index({ navigation }) {
   client.on("connect", () => {
     console.log("Feeds Connected");
     client.subscribe(
-      [temp_topic, humi_topic, door_topic, gas_topic, switchlight_topic],
+      [
+        temp_topic,
+        humi_topic,
+        door_topic,
+        gas_topic,
+        switchlight_topic,
+        autolight_topic,
+        autodoor_topic,
+      ],
       () => {
         console.log(`Subscribe to topic '${temp_topic}'`);
         console.log(`Subscribe to topic '${humi_topic}'`);
         console.log(`Subscribe to topic '${door_topic}'`);
         console.log(`Subscribe to topic '${gas_topic}'`);
         console.log(`Subscribe to topic '${switchlight_topic}'`);
+        console.log(`Subscribe to topic '${autolight_topic}'`);
+        console.log(`Subscribe to topic '${autodoor_topic}'`);
       }
     );
   });
@@ -89,6 +101,22 @@ function Index({ navigation }) {
         (payload.toString() == "0" && myContext.lightButtonValue1)
       ) {
         myContext.lightButtonClick1();
+      }
+    }
+    if (topic == autolight_topic) {
+      if (payload.toString() == "1" && !myContext.lightSwitchValue1) {
+        myContext.lightToggleSwitch1(true);
+      }
+      if (payload.toString() == "0" && myContext.lightSwitchValue1) {
+        myContext.lightToggleSwitch1(false);
+      }
+    }
+    if (topic == autodoor_topic) {
+      if (payload.toString() == "1" && !myContext.doorSwitchValue1) {
+        myContext.doorToggleSwitch1(true);
+      }
+      if (payload.toString() == "0" && myContext.doorSwitchValue1) {
+        myContext.doorToggleSwitch1(false);
       }
     }
   });

@@ -12,6 +12,45 @@ import AppContext from "../AppContext.js";
 export default function DoorList() {
   const myContext = useContext(AppContext);
 
+  const host = "io.adafruit.com";
+  const ada_port = "443"; //web socket
+  //const clientId = `mqtt_${Math.random().toString(16).slice(3)}`; => !!!!! ERROR MULTIPLE CLIENT !!!!!!
+  const clientId = "mqtt_06092001_switchlight";
+  const connectUrl = `mqtt://${host}:${ada_port}`;
+  const autodoor_topic = "duy1711ak/feeds/iot-secu";
+
+  const mqtt = require("mqtt");
+
+  var client = mqtt.connect(connectUrl, {
+    clientId,
+    clean: true,
+    connectTimeout: 1000000,
+    username: "duy1711ak",
+    password: "aio_wSsJ61gqapOCi1uvfve5DTHJtc3N",
+    reconnectPeriod: 600000,
+  });
+
+  client.on("connect", () => {
+    console.log("Feeds Connected");
+    client.subscribe([autodoor_topic], () => {
+      console.log(`Subscribe to topic '${autodoor_topic}'`);
+    });
+  });
+
+  client.on("error", function (error) {
+    console.log("Can't connect" + error);
+  });
+
+  const DoorSwitchToggle1 = () => {
+    if (myContext.doorSwitchValue1 == true) {
+      myContext.doorToggleSwitch1(false);
+      client.publish(autodoor_topic, "0");
+    } else {
+      myContext.doorToggleSwitch1(true);
+      client.publish(autodoor_topic, "1");
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.wrapper}>
@@ -32,7 +71,7 @@ export default function DoorList() {
                   : "Safe mode: Off"}
               </Text>
               <Switch
-                onValueChange={myContext.doorToggleSwitch1}
+                onValueChange={DoorSwitchToggle1}
                 value={myContext.doorSwitchValue1}
                 trackColor={{ true: "blue", false: "red" }}
               />
