@@ -14,6 +14,44 @@ import AppContext from "../AppContext.js";
 export default function DoorList() {
   const myContext = useContext(AppContext);
 
+  const host = "io.adafruit.com";
+  const ada_port = "443"; //web socket
+  //const clientId = `mqtt_${Math.random().toString(16).slice(3)}`; => !!!!! ERROR MULTIPLE CLIENT !!!!!!
+  const clientId = "mqtt_06092001_switchlight";
+  const connectUrl = `mqtt://${host}:${ada_port}`;
+  const switchlight_topic = "duy1711ak/feeds/iot-switchlight";
+
+  const mqtt = require("mqtt");
+
+  var client = mqtt.connect(connectUrl, {
+    clientId,
+    clean: true,
+    connectTimeout: 1000000,
+    username: "duy1711ak",
+    password: "aio_wSsJ61gqapOCi1uvfve5DTHJtc3N",
+    reconnectPeriod: 600000,
+  });
+
+  client.on("connect", () => {
+    console.log("Feeds Connected");
+    client.subscribe([switchlight_topic], () => {
+      console.log(`Subscribe to topic '${switchlight_topic}'`);
+    });
+  });
+
+  client.on("error", function (error) {
+    console.log("Can't connect" + error);
+  });
+
+  const LightButtonClick1 = () => {
+    if (myContext.lightButtonValue1 == true) {
+      myContext.lightButtonClick1();
+      client.publish(switchlight_topic, "0");
+    } else {
+      myContext.lightButtonClick1();
+      client.publish(switchlight_topic, "1");
+    }
+  };
   const light_on = (
     <Image
       style={styles.light_bulb}
@@ -49,7 +87,7 @@ export default function DoorList() {
               <Text style={styles.room_info}>Living Room</Text>
               <TouchableOpacity
                 style={styles.light_buld_wrapper}
-                onPress={myContext.lightButtonClick1}
+                onPress={LightButtonClick1}
               >
                 {myContext.lightButtonValue1 ? light_on : light_off}
               </TouchableOpacity>

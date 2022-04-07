@@ -19,6 +19,7 @@ function Index({ navigation }) {
   const humi_topic = "duy1711ak/feeds/iot-humi";
   const door_topic = "duy1711ak/feeds/iot-door";
   const gas_topic = "duy1711ak/feeds/iot-gas";
+  const switchlight_topic = "duy1711ak/feeds/iot-switchlight";
 
   const mqtt = require("mqtt");
   const Swal = require("sweetalert2");
@@ -34,12 +35,16 @@ function Index({ navigation }) {
 
   client.on("connect", () => {
     console.log("Feeds Connected");
-    client.subscribe([temp_topic, humi_topic, door_topic, gas_topic], () => {
-      console.log(`Subscribe to topic '${temp_topic}'`);
-      console.log(`Subscribe to topic '${humi_topic}'`);
-      console.log(`Subscribe to topic '${door_topic}'`);
-      console.log(`Subscribe to topic '${gas_topic}'`);
-    });
+    client.subscribe(
+      [temp_topic, humi_topic, door_topic, gas_topic, switchlight_topic],
+      () => {
+        console.log(`Subscribe to topic '${temp_topic}'`);
+        console.log(`Subscribe to topic '${humi_topic}'`);
+        console.log(`Subscribe to topic '${door_topic}'`);
+        console.log(`Subscribe to topic '${gas_topic}'`);
+        console.log(`Subscribe to topic '${switchlight_topic}'`);
+      }
+    );
   });
 
   client.on("error", function (error) {
@@ -48,10 +53,10 @@ function Index({ navigation }) {
 
   client.on("message", (topic, payload) => {
     if (topic == temp_topic) {
-      myContext.SetTemperature(payload);
+      myContext.SetTemperature(payload.toString());
     }
     if (topic == humi_topic) {
-      myContext.SetHumidity(payload);
+      myContext.SetHumidity(payload.toString());
     }
     if (topic == door_topic) {
       if (payload.toString() == "1") {
@@ -77,6 +82,14 @@ function Index({ navigation }) {
         });
       }
       myContext.SetGasWarning(payload);
+    }
+    if (topic == switchlight_topic) {
+      if (
+        (payload.toString() == "1" && !myContext.lightButtonValue1) ||
+        (payload.toString() == "0" && myContext.lightButtonValue1)
+      ) {
+        myContext.lightButtonClick1();
+      }
     }
   });
 

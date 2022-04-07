@@ -4,11 +4,15 @@ import { StyleSheet, SafeAreaView } from "react-native";
 import MyHome from "./MyHome";
 import Features from "./Features";
 
-function Body({ navigation }) {
+function Body({ navigation, publishTurnOnLight, publishTurnOffLight }) {
   return (
     <SafeAreaView style={styles.container}>
       <MyHome />
-      <Features navigation={navigation} />
+      <Features
+        navigation={navigation}
+        publishTurnOnLight={publishTurnOnLight}
+        publishTurnOffLight={publishTurnOffLight}
+      />
     </SafeAreaView>
   );
 }
