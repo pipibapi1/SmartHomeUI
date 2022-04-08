@@ -10,15 +10,17 @@ import {
 export default function Header({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          <Image style={styles.img} source={require("./assets/backicon.png")} />
-        </TouchableOpacity>
-        <Text style={styles.text}>Forgot Password?</Text>
-        <Text style={styles.text1}>Recover you password if you have forgot the password!</Text>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+      >
+        <Image style={styles.img} source={require("./assets/backicon.png")} />
+      </TouchableOpacity>
+      <Text style={styles.text}>Forgot Password?</Text>
+      <Text style={styles.text1}>
+        Recover you password if you have forgot the password!
+      </Text>
     </SafeAreaView>
   );
 }
@@ -29,23 +31,23 @@ const styles = StyleSheet.create({
     height: 38,
     borderRadius: 52 / 2,
     marginLeft: "30px",
-    marginTop: "60px"
+    marginTop: "60px",
   },
   text: {
     backgroundColor: "transparent",
     marginTop: "30px",
     marginLeft: "30px",
     color: "#FDA43C",
-    fontSize: "30px",
-    fontWeight: "bold"
-  },  
+    fontSize: 15,
+    fontWeight: "bold",
+  },
   text1: {
     backgroundColor: "transparent",
     marginTop: "15px",
     marginLeft: "30px",
     color: "#FFFFFF",
-    fontSize: "17px",
-    paddingRight: "100px"
+    fontSize: 17,
+    paddingRight: "100px",
   },
   container: {
     //backgroundColor: "blue",
