@@ -8,6 +8,7 @@ import Gas_icon from "./Gas_icon";
 import Threshold from "./Threshold";
 import Light from "./Light";
 
+
 export default function Gas({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
