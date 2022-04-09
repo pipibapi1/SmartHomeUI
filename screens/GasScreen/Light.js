@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -6,18 +6,32 @@ import {
   Text,
   Image,
 } from "react-native";
+import AppContext from "../AppContext.js";
 
 export default function Footer() {
+  const myContext = useContext(AppContext);
+  const light_on = (
+    <Image
+      style={styles.home_image}
+      source={require("./assets/Light_on.png")}
+    />
+  );
+
+  const light_off = (
+    <Image
+      style={styles.home_image}
+      source={require("./assets/Light_off.png")}
+    />
+  );
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.button}>
-        <Image
-          style={styles.home_image}
-          source={require("./assets/Light_on.png")}
-        />
+        <SafeAreaView onClick={myContext.lightGasThresholdClick}>
+          {myContext.lightGasThreshold ? light_on : light_off}
+        </SafeAreaView>
         <Text style={styles.text}>Light alert gas threshold</Text>
-    </SafeAreaView>
-    <SafeAreaView style={styles.button2}>
+      </SafeAreaView>
+      <SafeAreaView style={styles.button2}>
         <SafeAreaView style={{ flexDirection: "row" }}>
           <Image
             style={styles.home_image2}

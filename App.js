@@ -7,6 +7,10 @@ export default function App() {
   const [temperature, setTemperature] = useState(28);
   const [humidity, setHumidity] = useState(60);
   const [gasWarning, setGasWarning] = useState(0);
+  // Gas Screen
+  const [gasThreshold, setGasThreshold] = useState(false);
+  const [lightGasThreshold, setLightGasThreshold] = useState(false)
+
   const [door1Alert, setDoor1Alert] = useState(0);
   const [numLightOn, setNumLightOn] = useState(0);
 
@@ -42,6 +46,12 @@ export default function App() {
   const SetDoor1Alert = (value) => {
     setDoor1Alert(value);
   };
+  const GasThresholdClick = () => {
+    setGasThreshold(!gasThreshold);
+  }
+  const lightGasThresholdClick = () => {
+    setLightGasThreshold(!lightGasThreshold);
+  }
   const lightButtonClick1 = () => {
     if (lightButtonValue1 == true) {
       setLightButtonValue1(false);
@@ -137,6 +147,8 @@ export default function App() {
     temperature: temperature,
     humidity: humidity,
     gasWarning: gasWarning,
+    gasThreshold: gasThreshold,
+    lightGasThreshold: lightGasThreshold,
     door1Alert: door1Alert,
     numLightOn: numLightOn,
     lightButtonValue1: lightButtonValue1,
@@ -170,6 +182,8 @@ export default function App() {
     doorToggleSwitch2,
     doorToggleSwitch3,
     doorToggleSwitch4,
+    GasThresholdClick,
+    lightGasThresholdClick,
   };
   return (
     <AppContext.Provider value={globalData}>
