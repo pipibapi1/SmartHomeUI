@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import AppContext from "../AppContext.js";
+import axios from "axios";
 //import CustomSwitch from 'react-native-custom-switch';
 
 export default function DoorList() {

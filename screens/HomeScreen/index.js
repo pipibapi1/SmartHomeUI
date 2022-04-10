@@ -92,6 +92,7 @@ function Index({ navigation }) {
           confirmButtonColor: "#FDA43C",
           confirmButtonText: "Confirm!",
         });
+        navigation.navigate("Gas");
       }
       myContext.SetGasWarning(payload);
     }

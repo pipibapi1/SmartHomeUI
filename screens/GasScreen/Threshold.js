@@ -13,12 +13,8 @@ export default function Header() {
   );
 
   return (
-    <SafeAreaView style={styles.container} onClick={myContext.GasThresholdClick}>
-      {myContext.gasThreshold ? (
-        gasThresholdOn
-      ) : (
-        gasThresholdOff
-      )}
+    <SafeAreaView style={styles.container}>
+      {myContext.gasWarning == 1 ? gasThresholdOn : gasThresholdOff}
     </SafeAreaView>
   );
 }

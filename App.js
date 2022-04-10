@@ -9,7 +9,7 @@ export default function App() {
   const [gasWarning, setGasWarning] = useState(0);
   // Gas Screen
   const [gasThreshold, setGasThreshold] = useState(false);
-  const [lightGasThreshold, setLightGasThreshold] = useState(false)
+  const [lightGasThreshold, setLightGasThreshold] = useState(false);
 
   const [door1Alert, setDoor1Alert] = useState(0);
   const [numLightOn, setNumLightOn] = useState(0);
@@ -48,10 +48,10 @@ export default function App() {
   };
   const GasThresholdClick = () => {
     setGasThreshold(!gasThreshold);
-  }
+  };
   const lightGasThresholdClick = () => {
     setLightGasThreshold(!lightGasThreshold);
-  }
+  };
   const lightButtonClick1 = () => {
     if (lightButtonValue1 == true) {
       setLightButtonValue1(false);

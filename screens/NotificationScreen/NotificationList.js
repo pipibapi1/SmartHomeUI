@@ -59,13 +59,71 @@ export default function NotificationList() {
           </SafeAreaView>
         </SafeAreaView>
       );
-    } else {
+    }
+    if (type == "Door Alert") {
       return (
         <SafeAreaView key={key} style={styles.card}>
           <SafeAreaView style={styles.inner}>
             <SafeAreaView style={styles.head}>
               <SafeAreaView style={styles.alert_tag}>
                 <Text style={styles.head_text}>Alert</Text>
+              </SafeAreaView>
+              <SafeAreaView style={styles.date}>
+                <Text style={styles.head_text}>{dateString}</Text>
+              </SafeAreaView>
+            </SafeAreaView>
+            <SafeAreaView style={styles.body}>
+              <Text style={styles.body_text}>{content}</Text>
+            </SafeAreaView>
+          </SafeAreaView>
+        </SafeAreaView>
+      );
+    }
+    if (type == "Control Light") {
+      return (
+        <SafeAreaView key={key} style={styles.card}>
+          <SafeAreaView style={styles.inner}>
+            <SafeAreaView style={styles.head}>
+              <SafeAreaView style={styles.light_tag}>
+                <Text style={styles.head_text}>Light</Text>
+              </SafeAreaView>
+              <SafeAreaView style={styles.date}>
+                <Text style={styles.head_text}>{dateString}</Text>
+              </SafeAreaView>
+            </SafeAreaView>
+            <SafeAreaView style={styles.body}>
+              <Text style={styles.body_text}>{content}</Text>
+            </SafeAreaView>
+          </SafeAreaView>
+        </SafeAreaView>
+      );
+    }
+    if (type == "Control Light Auto") {
+      return (
+        <SafeAreaView key={key} style={styles.card}>
+          <SafeAreaView style={styles.inner}>
+            <SafeAreaView style={styles.head}>
+              <SafeAreaView style={styles.lightauto_tag}>
+                <Text style={styles.head_text}>SmartLight</Text>
+              </SafeAreaView>
+              <SafeAreaView style={styles.date}>
+                <Text style={styles.head_text}>{dateString}</Text>
+              </SafeAreaView>
+            </SafeAreaView>
+            <SafeAreaView style={styles.body}>
+              <Text style={styles.body_text}>{content}</Text>
+            </SafeAreaView>
+          </SafeAreaView>
+        </SafeAreaView>
+      );
+    }
+    if (type == "Control Door Safe Mode") {
+      return (
+        <SafeAreaView key={key} style={styles.card}>
+          <SafeAreaView style={styles.inner}>
+            <SafeAreaView style={styles.head}>
+              <SafeAreaView style={styles.doorsafemode_tag}>
+                <Text style={styles.head_text}>Security</Text>
               </SafeAreaView>
               <SafeAreaView style={styles.date}>
                 <Text style={styles.head_text}>{dateString}</Text>
@@ -167,6 +225,30 @@ const styles = StyleSheet.create({
   },
   alert_tag: {
     backgroundColor: "#FF0000",
+    width: "35%",
+    height: "85%",
+    borderRadius: 1000,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  light_tag: {
+    backgroundColor: "#E965C4",
+    width: "35%",
+    height: "85%",
+    borderRadius: 1000,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  lightauto_tag: {
+    backgroundColor: "#58C0FA",
+    width: "35%",
+    height: "85%",
+    borderRadius: 1000,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  doorsafemode_tag: {
+    backgroundColor: "#4838FF",
     width: "35%",
     height: "85%",
     borderRadius: 1000,
