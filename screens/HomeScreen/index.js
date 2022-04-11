@@ -19,7 +19,7 @@ function Index({ navigation }) {
   const humi_topic = "duy1711ak/feeds/iot-humi";
   const door_topic = "duy1711ak/feeds/iot-door";
   const gas_topic = "duy1711ak/feeds/iot-gas";
-  const switchlight_topic = "duy1711ak/feeds/iot-switchlight";
+  const light_topic = "duy1711ak/feeds/iot-light";
   const autolight_topic = "duy1711ak/feeds/iot-lightsys";
   const autodoor_topic = "duy1711ak/feeds/iot-secu";
 
@@ -43,7 +43,7 @@ function Index({ navigation }) {
         humi_topic,
         door_topic,
         gas_topic,
-        switchlight_topic,
+        light_topic,
         autolight_topic,
         autodoor_topic,
       ],
@@ -52,7 +52,7 @@ function Index({ navigation }) {
         console.log(`Subscribe to topic '${humi_topic}'`);
         console.log(`Subscribe to topic '${door_topic}'`);
         console.log(`Subscribe to topic '${gas_topic}'`);
-        console.log(`Subscribe to topic '${switchlight_topic}'`);
+        console.log(`Subscribe to topic '${light_topic}'`);
         console.log(`Subscribe to topic '${autolight_topic}'`);
         console.log(`Subscribe to topic '${autodoor_topic}'`);
       }
@@ -96,7 +96,7 @@ function Index({ navigation }) {
       }
       myContext.SetGasWarning(payload);
     }
-    if (topic == switchlight_topic) {
+    if (topic == light_topic) {
       if (
         (payload.toString() == "1" && !myContext.lightButtonValue1) ||
         (payload.toString() == "0" && myContext.lightButtonValue1)
