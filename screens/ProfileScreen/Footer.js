@@ -9,7 +9,7 @@ import {
 
 export default function Footer() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <SafeAreaView style={styles.info}>
         <Image style={styles.img} source={require("./assets/exit.png")} />
       </SafeAreaView>

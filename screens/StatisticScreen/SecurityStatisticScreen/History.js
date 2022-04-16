@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -6,8 +6,18 @@ import {
   Text,
   Image,
 } from "react-native";
+import axios from "axios";
 
 export default function Choice({ navigation }) {
+  const [data, setdata] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/door").then((res) => {
+      console.log(res.data[0]);
+      setdata(res.data[0]);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.button}>

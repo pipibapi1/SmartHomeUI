@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,21 +6,33 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import axios from "axios";
 
 export default function Profile() {
+  const [email, setemail] = useState(null);
+  const [firstName, setfirstName] = useState(null);
+  const [lastName, setlastName] = useState(null);
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/userinfo").then((res) => {
+      setemail(res.data[0].email);
+      setfirstName(res.data[0].firstname);
+      setlastName(res.data[0].lastname);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
-      <SafeAreaView style={styles.info}>
         <Image style={styles.img} source={require("./assets/profile.jpg")} />
-        <Text style={styles.text_name}>Name</Text>
-        <Text style={styles.text_email}>email@gmail.com</Text>
-      </SafeAreaView>
+        <Text style={styles.text_name}>{firstName + " " + lastName}</Text>
+        <Text style={styles.text_email}>{email}</Text>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   img: {
+
     width: 92,
     height: 92,
     borderRadius: 92 / 2,
@@ -38,11 +50,13 @@ const styles = StyleSheet.create({
     color: "#FDA43C",
   },
   container: {
+    alignItems: "center",
+    justifyContent: "center",
+    justifyContent: "space-between",
     width: "100%",
     height: "20%",
   },
   info: {
-    width: "28%",
     height: "80%",
     marginLeft: "38%",
     marginTop: "8%",

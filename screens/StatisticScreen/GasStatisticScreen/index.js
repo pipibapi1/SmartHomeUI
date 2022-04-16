@@ -24,7 +24,7 @@ export default function Gas({ navigation }) {
         <Statistic />
         <History />
 
-      <SafeAreaView style={{ marginTop: "100px" }}></SafeAreaView>
+      <SafeAreaView style={{ marginTop: "-52px" }}></SafeAreaView>
       <Footer navigation={navigation} />
     </SafeAreaView>
   );
