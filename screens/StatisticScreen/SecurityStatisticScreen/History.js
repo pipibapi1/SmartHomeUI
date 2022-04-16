@@ -5,41 +5,37 @@ import {
   TouchableOpacity,
   Text,
   Image,
+  ScrollView,
 } from "react-native";
 import axios from "axios";
+import Moment from "moment";
 
 export default function Choice({ navigation }) {
   const [data, setdata] = useState([]);
+  Moment.locale("en");
 
   useEffect(() => {
     axios.get("http://localhost:5000/door").then((res) => {
-      console.log(res.data[0]);
-      setdata(res.data[0]);
+      console.log(res.data[0].data.length);
+      setdata(res.data[0].data);
     });
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.button}>
-        {/* <SafeAreaView style={styles.button}> */}
         <Text style={styles.text1}>Nhật ký</Text>
         <hr style={{ width: "100%" }}></hr>
-        <Text style={styles.text}>
-        02/03/2022 20:30:00 :{" "}
-          <Text style={styles.text3}> Khởi động hệ thống</Text>
-        </Text>
-
-        <Text style={styles.text}>
-        02/03/2022 21:30:00 : 
-          <Text style={styles.text2}>Phát hiện cửa mở</Text>
-        </Text>
-
-        <Text style={styles.text}>
-        03/03/2022 06:30:00 : 
-          <Text style={styles.text3}>Tắt hệ thống</Text>
-        </Text>
-
-        {/* </SafeAreaView> */}
+        <ScrollView>
+          {data
+            .filter((data) => data.value == 1)
+            .map((filteredData) => (
+              <Text style={styles.text}>
+                {Moment(filteredData.time).format("MMMM Do YYYY, h:mm:ss a")} :{" "}
+                <Text style={styles.text2}>Phát hiện cửa mở</Text>
+              </Text>
+            ))}
+        </ScrollView>
       </SafeAreaView>
     </SafeAreaView>
   );

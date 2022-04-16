@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   SafeAreaView,
@@ -6,14 +6,34 @@ import {
   Text,
   Image,
 } from "react-native";
+import axios from "axios";
+import Moment from 'moment';
 
 export default function Choice({ navigation }) {
+
+  const [data, setdata] = useState([]);
+  const [num, setnum] = useState(0);
+  const [time, settime] = useState("");
+  Moment.locale('en');
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/door").then((res) => {
+      settime(Moment(res.data[0].data[0].time).format('MMM YYYY'))
+      var temp = 0;
+      for (let i = 0; i < res.data[0].data.length; i++) {
+        if(res.data[0].data[i].value == 1) temp += 1;
+      }
+      setnum(temp);
+      setdata(res.data[0]);
+    });
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <SafeAreaView style={styles.button}>
         {/* <SafeAreaView style={styles.button}> */}
-        <Text style={styles.text}>Tuần: 14</Text>
-        <Text style={styles.text}>Số lần báo động: 1</Text>
+        <Text style={styles.text}>Tháng: {time}</Text>
+        <Text style={styles.text}>Số lần báo động:  {num}</Text>
         {/* </SafeAreaView> */}
       </SafeAreaView>
     </SafeAreaView>
@@ -30,7 +50,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   button: {
-    marginTop: "70px",
+    marginTop: "50px",
     backgroundColor: "#575252",
     width: "80%",
     height: "100%",
