@@ -4,12 +4,12 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import Header from "./Header";
 import Form from "./Form";
-import SignupButton from "./SignupButton";
 import Footer from "./Footer";
 
 
 
-export default function index({ navigation }) {
+export default function index({route, navigation }) {
+  const { email} = route.params;
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
@@ -17,10 +17,14 @@ export default function index({ navigation }) {
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
       />    
-      <Header  navigation={navigation}/>
-      <Form />
-      <SignupButton navigation={navigation}/>
-      <Footer navigation={navigation}/>
+      <Header navigation={navigation}/>
+      <Form 
+              email={email}
+              navigation={navigation}
+      />
+      {/* <ForgotPassword />   */}
+      {/* <LoginButton   navigation={navigation}/> */}
+      <Footer />
     </SafeAreaView>
   );
 }

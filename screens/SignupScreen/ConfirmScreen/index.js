@@ -1,28 +1,30 @@
 import * as React from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import Header from "./Header";
 import Form from "./Form";
-import ForgotPassword from "./ForgotPassword";
-import LoginButton from "./LoginButton";
-import Footer from "./Footer";
 
 
-
-export default function index({ navigation }) {
+export default function index({ route, navigation }) {
+  const { email, name, password } = route.params;
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient
         // Background Linear Gradient
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
-      />    
-      <Header navigation={navigation}/>
-      <Form />
-      {/* <ForgotPassword />   */}
-      <LoginButton   navigation={navigation}/>
-      <Footer />
+      />
+      <Header navigation={navigation} />
+      {/* <Text style={{ fontSize: "100px", marginTop: "100px" }}> {JSON.stringify(email)}</Text> */}
+      <Form
+        name={name}
+        email={email}
+        password={password}
+        navigation={navigation}
+      />
+      {/* <SignupButton navigation={navigation}/> */}
+      {/* <Footer navigation={navigation}/> */}
     </SafeAreaView>
   );
 }

@@ -10,16 +10,19 @@ import {
 export default function Footer({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
-        <Image style={styles.img_line} source={require("./assets/Line 1.png")} />
-        <Text style={styles.text}>Already have an account?</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-        <Text style={styles.text1}>Login</Text>
-        </TouchableOpacity>    
+        <Image style={styles.img_line} source={require("../assets/Line 1.png")} />
+        <Text style={styles.text}>Already have an account? 
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              navigation.navigate("Login");
+            }}
+          >
+                      <Text style={styles.text1}> Login</Text>
+          </TouchableOpacity>
+
+        </Text>
+    
     </SafeAreaView>
   );
 }
@@ -35,20 +38,19 @@ const styles = StyleSheet.create({
   img_line: {
     height: 1,
     width: "70%",
-    marginBottom: "5px"
+    marginBottom: "35px"
   },
   text: {
-    marginLeft: "-50px",
-    marginBottom: "80px",
+    marginBottom: "67px",
     fontSize: 14,
     color: "#FFFFFF",
     fontWeight: "bold",
+    textAlign: "center"
   },  
   text1: {
-    marginLeft:  "165px",
-    marginTop: "-99px",
     fontSize: 14,
     color: "#FDA43C",
     fontWeight: "bold",
+    textAlign: "center"
   },  
 });
