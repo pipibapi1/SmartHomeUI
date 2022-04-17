@@ -17,9 +17,9 @@ export default function index({ navigation }) {
         style={styles.background}
       />
       <Header  navigation={navigation}/>
-      <Form />
-      <ForgotPassword  navigation={navigation}/>
-      <LoginButton navigation={navigation} />
+      <Form navigation={navigation}/>
+      {/* <ForgotPassword  navigation={navigation}/> */}
+      {/* <LoginButton navigation={navigation} /> */}
       <Footer navigation={navigation} />
     </SafeAreaView>
   );

@@ -1,62 +1,126 @@
-import * as React from "react";
-import { StyleSheet, Text, SafeAreaView, Image } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import axios from "axios";
 
-export default function Form() {
+export default function Form({ navigation }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onPress = () => {
+    axios
+      .post("http://localhost:5000/account/login", {
+        password: password,
+        email: email,
+      })
+      .then((response) => {
+        console.log(response.data);
+        if(response.data) navigation.navigate("Home");
+      });
+  };
+
+  const emailInputHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const passwordInputHandler = (event) => {
+    setPassword(event.target.value);
+  };
+
+  //   axios.post('http://localhost:5000/account/login').then(resp => {
+
+  //   if (resp.data) console.log('hihi');
+  // });
+
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={styles.text_title}>Email</Text>
+      <View style={styles.sectionStyle}>
+        <Image
+          style={styles.imageStyle}
+          source={require("./assets/email.png")}
+        />
+        <TextInput
+          style={styles.text}
+          placeholder="Ex: abc@example.com"
+          value={email}
+          onChange={emailInputHandler}
+        ></TextInput>
+      </View>
 
-        {/* <Text style={styles.text_title}>First name</Text>
-        <Text style={styles.text_content}>What's your first name?</Text>
+      <Text style={styles.text_title}>Your password</Text>
+      <View style={styles.sectionStyle}>
+        <Image
+          style={styles.imageStyle}
+          source={require("./assets/pass.png")}
+        />
+        <TextInput
+          style={styles.text}
+          placeholder="*********"
+          value={password}
+          onChange={passwordInputHandler}
+          secureTextEntry={true}
+        ></TextInput>
+      </View>
 
-        <Text style={styles.text_title}>Last name</Text>
-        <Text style={styles.text_content}>What's your last name?</Text> */}
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate("ForgotPassword");
+        }}
+      >
+        <Text style={styles.forgotpass}>Forgot Password?</Text>
+      </TouchableOpacity>
 
-        <Text style={styles.text_title}>Email</Text>
-        <Text style={styles.text_content_phone}>
-            <Image style={styles.img_email} source={require("./assets/email.png")} />
-            <Image style={styles.img_line} source={require("./assets/line.png")} />
-            <Text style={{marginLeft: "10px", position: "relative", top: "-10px"}}>Email</Text>
-        </Text>
-
-        <Text style={styles.text_title}>Your Password</Text>
-        <Text style={styles.text_content_phone}>
-            <Image style={styles.img_password} source={require("./assets/pass.png")} />
-            <Image style={styles.img_line} source={require("./assets/line.png")} />
-            <Text style={{marginLeft: "10px", position: "relative", top: "-10px"}}>Password</Text>
-        </Text>
-
-        {/* <Text style={styles.text_title}>Birthday</Text>
-        <Text style={styles.text_content_phone}>
-            <Text style={{marginLeft: "60px", position: "relative", top: "-10px", marginRight: "30px"}}>What's your date of birth?</Text>
-            <Image style={styles.img_down} source={require("./assets/calendar.png")} />
-        </Text> */}
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Image
+          style={styles.img}
+          source={require("./assets/loginbutton.png")}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  img_password: {
-    marginLeft: "-200px",
-    marginRight: "5px",
-    marginBottom: "3px",
-    width: 25,
+  sectionStyle: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    // height: 40,
+    borderRadius: 5,
+    backgroundColor: "transparent",
+    // fontSize: 16,
+    // color: "#C8C8C8",
+    // textAlign: "center",
+    marginLeft: "8%",
+    // flex: 1,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#FDA43C",
+    marginRight: "8%",
+    marginBottom: "22px",
+  },
+  imageStyle: {
+    marginLeft: "3%",
     height: 25,
-  },
-  img_email: {
-    marginLeft: "-230px",
-    marginRight: "5px",
-    marginBottom: "3px",
     width: 25,
-    height: 25,
+    resizeMode: "stretch",
+    alignItems: "center",
   },
-  img_line: {
-    height: 40,
-    width: 3,
-    marginBottom: "-5px"
-  },
-  img_down: {
-    height: 38,
-    width: 38,
+  img: {
+    marginBottom: "200px",
+    width: "75%",
+    height: 52,
+    marginLeft: "50px",
+    borderRadius: 10,
   },
   text_title: {
     backgroundColor: "transparent",
@@ -65,45 +129,35 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     marginLeft: "8%",
     marginBottom: "5px",
-    marginTop: "15px"
   },
-  text_content: {
+  text: {
     backgroundColor: "transparent",
     fontSize: 16,
-    color: "#C8C8C8",
-    // fontFamily: "Roboto",
-    textAlign: 'center',
-    marginLeft: "8%",
-    justifyContent: "center",
+    color: "#FFFFFF",
+    // justifyContent: "center",
     flex: 1,
-    borderRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
     borderWidth: 1,
-    borderColor: "#FDA43C",
-    marginRight: "8%",
-    marginBottom: "10px",
-    paddingTop: "10px",
-    paddingBottom: "10px",
+    paddingTop: "13px",
+    paddingBottom: "13px",
+    borderColor: "transparent",
+    marginLeft: "3%",
   },
-  text_content_phone: {
+  forgotpass: {
     backgroundColor: "transparent",
-    fontSize: 16,
-    color: "#C8C8C8",
+    fontSize: "14px",
     // fontFamily: "Roboto",
-    textAlign: 'center',
+    // textAlign: 'center',
     marginLeft: "8%",
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-    borderColor: "#FDA43C",
-    borderRadius: 10,
-    borderWidth: 1,
-    marginRight: "8%",
-    marginBottom: "10px",
-
+    // alignItems: "center",
+    // justifyContent: "center",
+    marginBottom: "27px",
+    color: "#FDA43C",
   },
   container: {
-    marginTop: "20px",
+    marginTop: "30px",
     width: "100%",
-    height: "12%",
+    height: "40%",
   },
 });
