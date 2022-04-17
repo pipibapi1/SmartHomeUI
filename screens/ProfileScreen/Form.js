@@ -12,8 +12,9 @@ import {
   View,
 } from "react-native";
 import axios from "axios";
+import Swal from 'sweetalert2';
 
-export default function Form() {
+export default function Form({ navigation }) {
   const [email, setemail] = useState(null);
   const [firstName, setfirstName] = useState(null);
   const [lastName, setlastName] = useState(null);
@@ -32,6 +33,12 @@ export default function Form() {
         email: email,
       })
       .then((response) => console.log(response.data));
+      Swal.fire(
+        'Update Successfully!',
+        '',
+        'success'
+      );
+      navigation.navigate("Home");
   };
 
   const firstnameChangeHandler = (event) => {
