@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, Component, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,16 +10,37 @@ import {
   Alert,
   Icon,
   View,
+  Button,
 } from "react-native";
 import axios from "axios";
+import Swal from "sweetalert2";
+import CalendarPicker from "react-native-calendar-picker";
+import Moment from "moment";
+import Modal, {
+  ModalTitle,
+  ModalContent,
+  ModalFooter,
+  ModalButton,
+  SlideAnimation,
+  ScaleAnimation,
+  BottomModal,
+  ModalPortal,
+} from "react-native-modals";
 
-export default function Form() {
+export default function Form({ navigation }) {
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const startDate = selectedStartDate
+    ? selectedStartDate.format("DD/MM/YYYY").toString()
+    : "";
+
   const [email, setemail] = useState(null);
   const [firstName, setfirstName] = useState(null);
   const [lastName, setlastName] = useState(null);
   const [phoneNumber, setphoneNumber] = useState(null);
   const [Gender, setGender] = useState("Male");
   const [birthDay, setbirthDay] = useState(null);
+
+  const [modal, setmodal] = useState(false);
 
   const onPress = () => {
     axios
@@ -32,6 +53,8 @@ export default function Form() {
         email: email,
       })
       .then((response) => console.log(response.data));
+    Swal.fire("Update Successfully!", "", "success");
+    navigation.navigate("Home");
   };
 
   const firstnameChangeHandler = (event) => {
@@ -73,6 +96,16 @@ export default function Form() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Modal
+        visible={modal}
+        onTouchOutside={() => {
+          setmodal(false);
+        }}
+      >
+        <ModalContent>
+          <CalendarPicker onDateChange={setbirthDay} />
+        </ModalContent>
+      </Modal>
       <Text style={styles.text_title}>First name</Text>
       <TextInput
         style={styles.text_content}
@@ -116,7 +149,7 @@ export default function Form() {
         selectedValue={Gender}
         onChange={genderChangeHandler}
         mode="dialog"
-        itemStyle={{height: 44, width: 44}}
+        itemStyle={{ height: 44, width: 44 }}
       >
         <Picker.Item label="Male" value="Male" />
         <Picker.Item label="Female" value="Female" />
@@ -127,12 +160,31 @@ export default function Form() {
         </Text> */}
 
       <Text style={styles.text_title}>Birthday</Text>
-      <TextInput
+      <View style={styles.sectionStyle}>
+        {/* <Image style={styles.imageStyle} source={require("./assets/line.png")} /> */}
+        <TextInput
+          style={styles.text_phone}
+          placeholder="Birthday"
+          value={Moment(birthDay).format("DD/MM/YYYY")}
+          // onChange={birthdayChangeHandler}
+        ></TextInput>
+        <TouchableOpacity
+          onPress={() => {
+            setmodal(true);
+          }}
+        >
+          <Image
+            style={styles.imageStyle}
+            source={require("./assets/calendar.png")}
+          />
+        </TouchableOpacity>
+      </View>
+      {/* <TextInput
         style={styles.text_content}
         placeholder="Birthday"
-        value={birthDay}
+        value={Moment(birthDay).format("DD/MM/YYYY")}
         onChange={birthdayChangeHandler}
-      ></TextInput>
+      ></TextInput> */}
       {/* <Text style={styles.text_content_phone}>
             <Text style={{marginLeft: "60px", position: "relative", top: "-10px", marginRight: "30px"}}>What's your date of birth?</Text>
             <Image style={styles.img_down} source={require("./assets/calendar.png")} />
@@ -200,7 +252,6 @@ const styles = StyleSheet.create({
     marginBottom: "5px",
   },
   text_content: {
-    
     backgroundColor: "transparent",
     fontSize: 16,
     color: "#C8C8C8",

@@ -22,7 +22,7 @@ export default function Gas({ navigation }) {
       </SafeAreaView>
         <Title />
         <Chart/>
-      <SafeAreaView style={{ marginTop: "100px" }}></SafeAreaView>
+      <SafeAreaView style={{ marginTop: "52px" }}></SafeAreaView>
       <Footer navigation={navigation} />
     </SafeAreaView>
   );

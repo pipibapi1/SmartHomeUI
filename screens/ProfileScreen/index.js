@@ -19,7 +19,7 @@ export default function index({ navigation }) {
       />
       <Header navigation={navigation} />
       <Profile />
-      <Form />
+      <Form navigation={navigation} />
       <Footer />
     </SafeAreaView>
   );
