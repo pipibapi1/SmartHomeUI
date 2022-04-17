@@ -1,6 +1,7 @@
 import AppNavigator from "./app.navigator.js";
 import React, { useState } from "react";
 import AppContext from "./screens/AppContext.js";
+import { ModalPortal } from 'react-native-modals';
 
 export default function App() {
   //Global Data
@@ -188,6 +189,7 @@ export default function App() {
   return (
     <AppContext.Provider value={globalData}>
       <AppNavigator />
+      <ModalPortal />
     </AppContext.Provider>
   );
 }

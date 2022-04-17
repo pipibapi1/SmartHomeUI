@@ -57,7 +57,8 @@ export default function Chart() {
 
 
   return (
-    <ScrollView>
+    <View style={{height: "400px", marginTop: "5%"}} >
+    <ScrollView >
       <SafeAreaView style={styles.container}>
         <View>
           <Text style={styles.text_name}>Temperature chart</Text>
@@ -141,6 +142,7 @@ export default function Chart() {
         </View>
       </SafeAreaView>
     </ScrollView>
+    </View>
   );
 }
 
