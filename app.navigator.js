@@ -17,9 +17,12 @@ import TempStatistic from "./screens/StatisticScreen/TempStatisticScreen/index.j
 import SecurityStatistic from "./screens/StatisticScreen/SecurityStatisticScreen/index.js";
 //Bang
 import Login from "./screens/LoginScreen/index.js";
-import Signup from "./screens/SignupScreen/index.js";
-import ForgotPassword from "./screens/ForgotPasswordScreen/index.js";
+import Register from "./screens/SignupScreen/RegisterScreen/index.js";
+import ConfirmScreen from "./screens/SignupScreen/ConfirmScreen/index.js";
+import ForgotPassword from "./screens/ForgotPasswordScreen/EmailSubmitScreen/Index.js";
 import LightScreen from "./screens/LightScreen/Index.js";
+import NewPasswordScreen from "./screens/ForgotPasswordScreen/NewPasswordScreen/Index.js";
+import VerifyScreen from "./screens/ForgotPasswordScreen/VerifyScreen/Index.js"; 
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -41,8 +44,11 @@ const AppNavigator = () => {
         <Screen name="Profile" component={ProfileScreen}></Screen>
         <Screen name="Gas" component={GasScreen}></Screen>
         <Screen name="Login" component={Login}></Screen>
-        <Screen name="Signup" component={Signup}></Screen>
+        <Screen name="Register" component={Register}></Screen>
+        <Screen name="ConfirmScreen" component={ConfirmScreen}></Screen>
         <Screen name="ForgotPassword" component={ForgotPassword}></Screen>
+        <Screen name="NewPasswordScreen" component={NewPasswordScreen}></Screen>
+        <Screen name="VerifyScreen" component={VerifyScreen}></Screen>        
         <Screen name="Statistic" component={Statistic}></Screen>
         <Screen name="GasStatistic" component={GasStatistic}></Screen>
         <Screen name="TempStatistic" component={TempStatistic}></Screen>

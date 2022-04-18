@@ -1,42 +1,26 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
+import {  StyleSheet,
   Text,
   SafeAreaView,
   Image,
   TextInput,
   TouchableOpacity,
-  View,
-} from "react-native";
-import Swal from "sweetalert2";
-import axios from "axios";
-
-export default function Form({ navigation }) {
-  const [email, setEmail] = useState("");
+  View,} from "react-native";
+  import axios from "axios";
+  import Swal from "sweetalert2";
+export default function Form(props) {
+  // console.log(props.email);
+  const email = props.email;
+  console.log(email);
   const [password, setPassword] = useState("");
-
   const onPress = () => {
-    axios
-      .post(
-        "https://smart-home-server-cafecotdua.herokuapp.com/account/login",
-        {
-          password: password,
-          email: email,
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-        if (response.data != "Unsuccessful") {
-          // Swal.fire("Update Successfully!", "", "success");
-          navigation.navigate("Home");
-        } else {
-          Swal.fire("Something went wrong!", "", "error");
-        }
-      });
-  };
-
-  const emailInputHandler = (event) => {
-    setEmail(event.target.value);
+    if (password.length < 6) Swal.fire("Password must be at least 6 characters long!", "", "info");
+    else{
+    props.navigation.navigate("VerifyScreen",{
+      password: password,
+      email: email,
+    })
+    }
   };
 
   const passwordInputHandler = (event) => {
@@ -45,25 +29,11 @@ export default function Form({ navigation }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text_title}>Email</Text>
+      <Text style={styles.text_title}>Enter New Password</Text>
       <View style={styles.sectionStyle}>
         <Image
           style={styles.imageStyle}
-          source={require("./assets/email.png")}
-        />
-        <TextInput
-          style={styles.text}
-          placeholder="Ex: abc@example.com"
-          value={email}
-          onChange={emailInputHandler}
-        ></TextInput>
-      </View>
-
-      <Text style={styles.text_title}>Your password</Text>
-      <View style={styles.sectionStyle}>
-        <Image
-          style={styles.imageStyle}
-          source={require("./assets/pass.png")}
+          source={require("../assets/pass.png")}
         />
         <TextInput
           style={styles.text}
@@ -73,20 +43,10 @@ export default function Form({ navigation }) {
           secureTextEntry={true}
         ></TextInput>
       </View>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate("ForgotPassword");
-        }}
-      >
-        <Text style={styles.forgotpass}>Forgot Password?</Text>
-      </TouchableOpacity>
-
       <TouchableOpacity style={styles.button} onPress={onPress}>
         <Image
           style={styles.img}
-          source={require("./assets/loginbutton.png")}
+          source={require("../assets/submit.png")}
         />
       </TouchableOpacity>
     </SafeAreaView>
@@ -120,7 +80,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   img: {
-    marginBottom: "200px",
+    marginBottom: "150px",
+    marginTop: "5%",
     width: "75%",
     height: 52,
     marginLeft: "50px",
@@ -148,20 +109,9 @@ const styles = StyleSheet.create({
     borderColor: "transparent",
     marginLeft: "3%",
   },
-  forgotpass: {
-    backgroundColor: "transparent",
-    fontSize: 14,
-    // fontFamily: "Roboto",
-    // textAlign: 'center',
-    marginLeft: "8%",
-    // alignItems: "center",
-    // justifyContent: "center",
-    marginBottom: "27px",
-    color: "#FDA43C",
-  },
   container: {
-    marginTop: "30px",
+    marginTop: "190px",
     width: "100%",
-    height: "40%",
+    height: "61%",
   },
 });

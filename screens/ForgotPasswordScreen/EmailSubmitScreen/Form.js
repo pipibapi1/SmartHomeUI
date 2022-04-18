@@ -8,29 +8,25 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Swal from "sweetalert2";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function Form({ navigation }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   const onPress = () => {
     axios
-      .post(
-        "https://smart-home-server-cafecotdua.herokuapp.com/account/login",
-        {
-          password: password,
-          email: email,
-        }
-      )
+      .post("http://localhost:5000/account/users", {
+        email: email,
+      })
       .then((response) => {
-        console.log(response.data);
-        if (response.data != "Unsuccessful") {
-          // Swal.fire("Update Successfully!", "", "success");
-          navigation.navigate("Home");
+        if (response.data == "Not exists") {
+          Swal.fire("Email address does not exist!", "", "error");
+          navigation.navigate("ForgotPassword");
         } else {
-          Swal.fire("Something went wrong!", "", "error");
+          navigation.navigate("NewPasswordScreen", {
+            email: email,
+          });
         }
       });
   };
@@ -39,17 +35,13 @@ export default function Form({ navigation }) {
     setEmail(event.target.value);
   };
 
-  const passwordInputHandler = (event) => {
-    setPassword(event.target.value);
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text_title}>Email</Text>
       <View style={styles.sectionStyle}>
         <Image
           style={styles.imageStyle}
-          source={require("./assets/email.png")}
+          source={require("../assets/email.png")}
         />
         <TextInput
           style={styles.text}
@@ -58,36 +50,8 @@ export default function Form({ navigation }) {
           onChange={emailInputHandler}
         ></TextInput>
       </View>
-
-      <Text style={styles.text_title}>Your password</Text>
-      <View style={styles.sectionStyle}>
-        <Image
-          style={styles.imageStyle}
-          source={require("./assets/pass.png")}
-        />
-        <TextInput
-          style={styles.text}
-          placeholder="*********"
-          value={password}
-          onChange={passwordInputHandler}
-          secureTextEntry={true}
-        ></TextInput>
-      </View>
-
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate("ForgotPassword");
-        }}
-      >
-        <Text style={styles.forgotpass}>Forgot Password?</Text>
-      </TouchableOpacity>
-
       <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Image
-          style={styles.img}
-          source={require("./assets/loginbutton.png")}
-        />
+        <Image style={styles.img} source={require("../assets/submit.png")} />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -120,7 +84,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   img: {
-    marginBottom: "200px",
+    marginBottom: "150px",
+    marginTop: "5%",
     width: "75%",
     height: 52,
     marginLeft: "50px",
@@ -148,20 +113,9 @@ const styles = StyleSheet.create({
     borderColor: "transparent",
     marginLeft: "3%",
   },
-  forgotpass: {
-    backgroundColor: "transparent",
-    fontSize: 14,
-    // fontFamily: "Roboto",
-    // textAlign: 'center',
-    marginLeft: "8%",
-    // alignItems: "center",
-    // justifyContent: "center",
-    marginBottom: "27px",
-    color: "#FDA43C",
-  },
   container: {
-    marginTop: "30px",
+    marginTop: "190px",
     width: "100%",
-    height: "40%",
+    height: "61%",
   },
 });

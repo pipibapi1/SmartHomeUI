@@ -6,6 +6,8 @@ import Header from "./Header";
 import Form from "./Form";
 import Footer from "./Footer";
 
+
+
 export default function index({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
@@ -13,10 +15,11 @@ export default function index({ navigation }) {
         // Background Linear Gradient
         colors={["#575252", "#282828", "#000000"]}
         style={styles.background}
-      />
+      />    
       <Header  navigation={navigation}/>
-      <Form navigation={navigation}/>
-      <Footer navigation={navigation} />
+      <Form   navigation={navigation}/>
+      {/* <SignupButton navigation={navigation}/> */}
+      <Footer navigation={navigation}/>
     </SafeAreaView>
   );
 }

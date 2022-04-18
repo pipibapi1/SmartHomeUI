@@ -8,31 +8,61 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Swal from "sweetalert2";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function Form({ navigation }) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [emailValidError, setEmailValidError] = useState('');
+
+  console.log(emailValidError);
+  const handleValidEmail = val => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (val.target.value.length == 0) setEmailValidError('');
+    else if (reg.test(val.target.value) === false) {
+      setEmailValidError('Please enter valid email address!');
+    } else if (reg.test(val.target.value) === true) {
+      setEmailValidError('');
+    }
+    };
+
   const onPress = () => {
+    if (!name || !password || !email) Swal.fire("Something went wrong!", "", "error");
+    else if (password.length < 6) Swal.fire("Password must be at least 6 characters long", "", "info");
+    else if (name && email && password && !emailValidError && password.length >=6){
     axios
-      .post(
-        "https://smart-home-server-cafecotdua.herokuapp.com/account/login",
-        {
-          password: password,
-          email: email,
-        }
-      )
+      .post("http://localhost:5000/account/users", {
+        email: email,
+      })
       .then((response) => {
-        console.log(response.data);
-        if (response.data != "Unsuccessful") {
-          // Swal.fire("Update Successfully!", "", "success");
-          navigation.navigate("Home");
+        if (response.data == "exists") {
+          Swal.fire("Email address exists!", "", "error");
+          navigation.navigate("Register");
         } else {
-          Swal.fire("Something went wrong!", "", "error");
+          navigation.navigate("ConfirmScreen", {
+            email: email,
+            name: name,
+            password: password,
+          });
         }
       });
+    }
+    else Swal.fire("Something went wrong!", "", "error");
+  };
+
+  // const onPress = () => {
+  //   navigation.navigate("ConfirmScreen",{
+  //     email: email,
+  //     name: name,
+  //     password: password,
+  //   })
+  // };
+
+  const nameInputHandler = (event) => {
+    setName(event.target.value);
   };
 
   const emailInputHandler = (event) => {
@@ -43,27 +73,50 @@ export default function Form({ navigation }) {
     setPassword(event.target.value);
   };
 
+  //   axios.post('http://localhost:5000/account/login').then(resp => {
+
+  //   if (resp.data) console.log('hihi');
+  // });
+
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={styles.text_title}>Your name</Text>
+      <View style={styles.sectionStyle}>
+        <Image
+          style={styles.imageStyle}
+          source={require("../assets/usericon.png")}
+        />
+        <TextInput
+          style={styles.text}
+          placeholder="Ex. Saul Ramirez"
+          value={name}
+          onChange={nameInputHandler}
+        ></TextInput>
+      </View>
+
       <Text style={styles.text_title}>Email</Text>
       <View style={styles.sectionStyle}>
         <Image
           style={styles.imageStyle}
-          source={require("./assets/email.png")}
+          source={require("../assets/email.png")}
         />
         <TextInput
           style={styles.text}
           placeholder="Ex: abc@example.com"
           value={email}
-          onChange={emailInputHandler}
+          onChange={(value) => {
+            emailInputHandler(value);
+            handleValidEmail(value);
+          }}
         ></TextInput>
       </View>
+      {emailValidError ? <Text style={styles.error_text}>{emailValidError}</Text> : <Text></Text>}
 
       <Text style={styles.text_title}>Your password</Text>
       <View style={styles.sectionStyle}>
         <Image
           style={styles.imageStyle}
-          source={require("./assets/pass.png")}
+          source={require("../assets/pass.png")}
         />
         <TextInput
           style={styles.text}
@@ -74,19 +127,10 @@ export default function Form({ navigation }) {
         ></TextInput>
       </View>
 
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => {
-          navigation.navigate("ForgotPassword");
-        }}
-      >
-        <Text style={styles.forgotpass}>Forgot Password?</Text>
-      </TouchableOpacity>
-
       <TouchableOpacity style={styles.button} onPress={onPress}>
         <Image
           style={styles.img}
-          source={require("./assets/loginbutton.png")}
+          source={require("../assets/signupbutton.png")}
         />
       </TouchableOpacity>
     </SafeAreaView>
@@ -110,7 +154,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FDA43C",
     marginRight: "8%",
-    marginBottom: "22px",
+    marginBottom: "28px",
   },
   imageStyle: {
     marginLeft: "3%",
@@ -120,7 +164,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   img: {
-    marginBottom: "200px",
+    marginBottom: "150px",
+    marginTop: "5%",
     width: "75%",
     height: 52,
     marginLeft: "50px",
@@ -150,7 +195,7 @@ const styles = StyleSheet.create({
   },
   forgotpass: {
     backgroundColor: "transparent",
-    fontSize: 14,
+    fontSize: "14px",
     // fontFamily: "Roboto",
     // textAlign: 'center',
     marginLeft: "8%",
@@ -159,9 +204,15 @@ const styles = StyleSheet.create({
     marginBottom: "27px",
     color: "#FDA43C",
   },
+  error_text: {
+    marginLeft: "8%",
+    marginTop: "-25px",
+    paddingBottom: "10px",
+    color: "#FDA43C",
+  },
   container: {
-    marginTop: "30px",
+    marginTop: "190px",
     width: "100%",
-    height: "40%",
+    height: "61%",
   },
 });

@@ -15,7 +15,7 @@ export default function Header({ navigation }) {
           navigation.navigate("Login");
         }}
       >
-        <Image style={styles.img} source={require("./assets/backicon.png")} />
+        <Image style={styles.img} source={require("../assets/backicon.png")} />
       </TouchableOpacity>
       <Text style={styles.text}>Forgot Password?</Text>
       <Text style={styles.text1}>
