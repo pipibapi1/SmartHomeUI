@@ -25,7 +25,7 @@ export default function Profile() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image style={styles.img} source={require("./assets/profile.jpg")} />
+      <Image style={styles.img} source={require("./assets/user.png")} />
       <Text style={styles.text_name}>{firstName + " " + lastName}</Text>
       <Text style={styles.text_email}>{email}</Text>
     </SafeAreaView>

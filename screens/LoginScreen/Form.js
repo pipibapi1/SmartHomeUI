@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   },
   forgotpass: {
     backgroundColor: "transparent",
-    fontSize: "14px",
+    fontSize: 14,
     // fontFamily: "Roboto",
     // textAlign: 'center',
     marginLeft: "8%",
