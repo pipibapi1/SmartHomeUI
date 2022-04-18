@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import Swal from "sweetalert2";
 import axios from "axios";
 
 export default function Form({ navigation }) {
@@ -22,7 +23,12 @@ export default function Form({ navigation }) {
       })
       .then((response) => {
         console.log(response.data);
-        if(response.data) navigation.navigate("Home");
+        if (response.data != "Unsuccessful") {
+          // Swal.fire("Update Successfully!", "", "success");
+          navigation.navigate("Home");
+        } else {
+          Swal.fire("Something went wrong!", "", "error");
+        }
       });
   };
 
@@ -33,11 +39,6 @@ export default function Form({ navigation }) {
   const passwordInputHandler = (event) => {
     setPassword(event.target.value);
   };
-
-  //   axios.post('http://localhost:5000/account/login').then(resp => {
-
-  //   if (resp.data) console.log('hihi');
-  // });
 
   return (
     <SafeAreaView style={styles.container}>

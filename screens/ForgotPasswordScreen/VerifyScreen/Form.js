@@ -34,7 +34,7 @@ export default function Form(props) {
           }
         });
     } else {
-      alert("condi DB");
+      Swal.fire("Something went wrong!", "", "error");
     }
   };
 

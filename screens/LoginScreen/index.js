@@ -4,8 +4,6 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import Header from "./Header";
 import Form from "./Form";
-import ForgotPassword from "./ForgotPassword";
-import LoginButton from "./LoginButton";
 import Footer from "./Footer";
 
 export default function index({ navigation }) {
@@ -18,8 +16,6 @@ export default function index({ navigation }) {
       />
       <Header  navigation={navigation}/>
       <Form navigation={navigation}/>
-      {/* <ForgotPassword  navigation={navigation}/> */}
-      {/* <LoginButton navigation={navigation} /> */}
       <Footer navigation={navigation} />
     </SafeAreaView>
   );

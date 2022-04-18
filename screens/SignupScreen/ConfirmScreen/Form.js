@@ -10,6 +10,7 @@ import {
   Alert,
 } from "react-native";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function Form(props) {
   console.log(props.name);
@@ -26,11 +27,13 @@ export default function Form(props) {
         })
         .then((response) => {
           console.log(response.data);
-          if (response.data == "Successfull") props.navigation.navigate("Login");
+          if (response.data == "Successfull"){
+            Swal.fire("Register Successfully!", "", "success");
+            props.navigation.navigate("Login");
+          }          
         });
-    } else {
-      alert("condi DB");
-    }
+    } else Swal.fire("Something went wrong!", "", "error");
+    
   };
 
   const optInputHandler = (event) => {

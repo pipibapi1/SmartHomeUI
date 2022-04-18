@@ -1,19 +1,50 @@
 import React, { useState, useEffect } from "react";
-import {  StyleSheet,
+import {
+  StyleSheet,
   Text,
   SafeAreaView,
   Image,
   TextInput,
   TouchableOpacity,
-  View,} from "react-native";
-  import axios from "axios";
+  View,
+} from "react-native";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function Form({ navigation }) {
   const [email, setEmail] = useState("");
+  // const onPress = () => {
+  //   axios
+  //     .post("http://localhost:5000/account/users", {
+  //       email: email,
+  //     })
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       if (response.data) {
+  //         Swal.fire("Something went wrong!", "", "error");
+  //       } else {
+  //         navigation.navigate("NewPasswordScreen", {
+  //           email: email,
+  //         });
+  //       }
+  //     });
+  // };
+
   const onPress = () => {
-    navigation.navigate("NewPasswordScreen",{
-      email: email,
-    })
+    axios
+      .post("http://localhost:5000/account/users", {
+        email: email,
+      })
+      .then((response) => {
+        if (response.data == "Not exists") {
+          Swal.fire("Something went wrong!", "", "error");
+          navigation.navigate("ForgotPassword");
+        } else {
+          navigation.navigate("NewPasswordScreen", {
+            email: email,
+          });
+        }
+      });
   };
 
   const emailInputHandler = (event) => {
@@ -28,7 +59,7 @@ export default function Form({ navigation }) {
           style={styles.imageStyle}
           source={require("../assets/email.png")}
         />
-              <TextInput
+        <TextInput
           style={styles.text}
           placeholder="Ex: abc@example.com"
           value={email}
@@ -36,10 +67,7 @@ export default function Form({ navigation }) {
         ></TextInput>
       </View>
       <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Image
-          style={styles.img}
-          source={require("../assets/submit.png")}
-        />
+        <Image style={styles.img} source={require("../assets/submit.png")} />
       </TouchableOpacity>
     </SafeAreaView>
   );

@@ -9,18 +9,54 @@ import {
   View,
 } from "react-native";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function Form({ navigation }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // const [emailValidError, setEmailValidError] = useState('');
+
+  // console.log(emailValidError);
+  // const handleValidEmail = val => {
+  //   let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
+  //   if (val.length === 0) {
+  //     setEmailValidError('email address must be enter');
+  //   } else if (reg.test(val) === false) {
+  //     setEmailValidError('enter valid email address');
+  //   } else if (reg.test(val) === true) {
+  //     setEmailValidError('ok');
+  //   }
+  //   };
+
   const onPress = () => {
-    navigation.navigate("ConfirmScreen",{
-      email: email,
-      name: name,
-      password: password,
-    })
+    axios
+      .post("http://localhost:5000/account/users", {
+        email: email,
+      })
+      .then((response) => {
+        if (response.data == "exists") {
+          Swal.fire("Something went wrong!", "", "error");
+          navigation.navigate("Register");
+        } else {
+          navigation.navigate("ConfirmScreen", {
+            email: email,
+            name: name,
+            password: password,
+          });
+        }
+      });
   };
+
+  // const onPress = () => {
+  //   navigation.navigate("ConfirmScreen",{
+  //     email: email,
+  //     name: name,
+  //     password: password,
+  //   })
+  // };
 
   const nameInputHandler = (event) => {
     setName(event.target.value);
@@ -39,8 +75,6 @@ export default function Form({ navigation }) {
   //   if (resp.data) console.log('hihi');
   // });
 
-  
-
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.text_title}>Your name</Text>
@@ -51,7 +85,7 @@ export default function Form({ navigation }) {
         />
         <TextInput
           style={styles.text}
-          placeholder="Ex: abc@example.com"
+          placeholder="Ex. Saul Ramirez"
           value={name}
           onChange={nameInputHandler}
         ></TextInput>
@@ -67,9 +101,13 @@ export default function Form({ navigation }) {
           style={styles.text}
           placeholder="Ex: abc@example.com"
           value={email}
-          onChange={emailInputHandler}
+          onChange={(value) => {
+            emailInputHandler(value);
+            // handleValidEmail(value);
+          }}
         ></TextInput>
       </View>
+      {/* {emailValidError ? <Text style={styles.error_text}>{emailValidError}</Text> : <Text></Text>} */}
 
       <Text style={styles.text_title}>Your password</Text>
       <View style={styles.sectionStyle}>
@@ -85,7 +123,6 @@ export default function Form({ navigation }) {
           secureTextEntry={true}
         ></TextInput>
       </View>
-
 
       <TouchableOpacity style={styles.button} onPress={onPress}>
         <Image
@@ -162,6 +199,11 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     // justifyContent: "center",
     marginBottom: "27px",
+    color: "#FDA43C",
+  },
+  error_text: {
+    marginLeft: "8%",
+    marginBottom: "10px",
     color: "#FDA43C",
   },
   container: {
