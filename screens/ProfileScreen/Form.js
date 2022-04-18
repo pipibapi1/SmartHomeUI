@@ -133,7 +133,6 @@ export default function Form({ navigation }) {
           style={styles.imageStyle}
           source={require("./assets/phone.png")}
         />
-        {/* <Image style={styles.imageStyle} source={require("./assets/line.png")} /> */}
         <TextInput
           style={styles.text_phone}
           placeholder="Phone number"
@@ -142,11 +141,6 @@ export default function Form({ navigation }) {
           keyboardType="number-pad"
         ></TextInput>
       </View>
-      {/* <Text style={styles.text_content_phone}>
-            <Image style={styles.img_phone} source={require("./assets/phone.png")} />
-            <Image style={styles.img_line} source={require("./assets/line.png")} />
-            <Text style={{marginLeft: "40px", position: "relative", top: "-10px"}}>Phone number</Text>
-        </Text> */}
 
       <Text style={styles.text_title}>Gender</Text>
       <Picker
@@ -159,19 +153,13 @@ export default function Form({ navigation }) {
         <Picker.Item label="Male" value="Male" />
         <Picker.Item label="Female" value="Female" />
       </Picker>
-      {/* <Text style={styles.text_content_phone}>
-            <Text style={{marginLeft: "75px", position: "relative", top: "-10px", marginRight: "70px"}}>Select your gender</Text>
-            <Image style={styles.img_down} source={require("./assets/down.png")} />
-        </Text> */}
 
       <Text style={styles.text_title}>Birthday</Text>
       <View style={styles.sectionStyle}>
-        {/* <Image style={styles.imageStyle} source={require("./assets/line.png")} /> */}
         <TextInput
-          style={styles.text_phone}
+          style={styles.text_birthday}
           placeholder="Birthday"
           value={Moment(birthDay).format("DD/MM/YYYY")}
-          // onChange={birthdayChangeHandler}
         ></TextInput>
         <TouchableOpacity
           onPress={() => {
@@ -179,21 +167,11 @@ export default function Form({ navigation }) {
           }}
         >
           <Image
-            style={styles.imageStyle}
+            style={styles.imageStyle2}
             source={require("./assets/calendar.png")}
           />
         </TouchableOpacity>
       </View>
-      {/* <TextInput
-        style={styles.text_content}
-        placeholder="Birthday"
-        value={Moment(birthDay).format("DD/MM/YYYY")}
-        onChange={birthdayChangeHandler}
-      ></TextInput> */}
-      {/* <Text style={styles.text_content_phone}>
-            <Text style={{marginLeft: "60px", position: "relative", top: "-10px", marginRight: "30px"}}>What's your date of birth?</Text>
-            <Image style={styles.img_down} source={require("./assets/calendar.png")} />
-        </Text> */}
       <TouchableOpacity onPress={onPress}>
         <Image style={styles.save} source={require("./assets/Save.png")} />
       </TouchableOpacity>
@@ -206,14 +184,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    // height: 40,
     borderRadius: 5,
     backgroundColor: "transparent",
-    // fontSize: 16,
-    // color: "#C8C8C8",
-    // textAlign: "center",
     marginLeft: "8%",
-    // flex: 1,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "#FDA43C",
@@ -222,6 +195,13 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     marginLeft: "3%",
+    height: 50,
+    width: 50,
+    resizeMode: "stretch",
+    alignItems: "center",
+  },
+  imageStyle2: {
+    marginLeft: "-50%",
     height: 50,
     width: 50,
     resizeMode: "stretch",
@@ -260,10 +240,10 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     fontSize: 16,
     color: "#C8C8C8",
-    // fontFamily: "Roboto",
-    textAlign: "center",
+    textAlign: "auto",
     marginLeft: "8%",
-    justifyContent: "center",
+    paddingLeft: "30%",
+    // justifyContent: "center",
     flex: 1,
     borderRadius: 10,
     borderWidth: 1,
@@ -277,9 +257,9 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     fontSize: 16,
     color: "#C8C8C8",
-    // fontFamily: "Roboto",
-    textAlign: "center",
+    // textAlign: "center",
     marginLeft: "8%",
+    paddingLeft: "30%",
     justifyContent: "center",
     flex: 1,
     borderRadius: 10,
@@ -294,7 +274,21 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     fontSize: 16,
     color: "#C8C8C8",
-    textAlign: "center",
+    // textAlign: "center",
+    paddingLeft: "18%",
+    justifyContent: "center",
+    flex: 1,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
+    borderWidth: 1,
+    paddingTop: "13px",
+    paddingBottom: "13px",
+  },
+  text_birthday: {
+    backgroundColor: "transparent",
+    fontSize: 16,
+    color: "#C8C8C8",
+    paddingLeft: "43%",
     justifyContent: "center",
     flex: 1,
     borderBottomRightRadius: 10,
