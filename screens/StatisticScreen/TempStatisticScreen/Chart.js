@@ -5,23 +5,32 @@ import {
   SafeAreaView,
   View,
   Image,
+  Picker,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("window").width;
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
-} from "react-native-chart-kit";
+import { LineChart } from "react-native-chart-kit";
 import axios from "axios";
 import Moment from "moment";
+import Modal, {
+  ModalTitle,
+  ModalContent,
+  ModalFooter,
+  ModalButton,
+  SlideAnimation,
+  ScaleAnimation,
+  BottomModal,
+  ModalPortal,
+} from "react-native-modals";
+import CalendarPicker from "react-native-calendar-picker";
 Moment.locale("en");
 
 export default function Chart() {
+  const [modal, setmodal] = useState(false);
+  const [date, setdate] = useState(new Date());
+
   const [temperatureTime, settemperatureTime] = useState([]);
   const [temperatureValue, settemperatureValue] = useState([]);
   const [humidityTime, sethumidityTime] = useState([]);
@@ -31,37 +40,117 @@ export default function Chart() {
     axios
       .get("https://smart-home-server-cafecotdua.herokuapp.com/temp")
       .then((res) => {
-        const time = [];
+        var time = [];
         const value = [];
-        const data = res.data[0].data.slice(0, 6).sort(function (a, b) {
-          return new Date(a.time) - new Date(b.time);
-        });
+        const data = res.data[0].data;
         for (let i = 0; i < data.length; i++) {
-          time.push(Moment(data[i].time).format("Do"));
-          value.push(data[i].val);
+          if (
+            Moment(date).format("DD/MM/YYYY") ==
+            Moment(data[i].time).format("DD/MM/YYYY")
+          ) {
+            time.push({
+              time: Moment(data[i].time).format("hh:mm"),
+              value: data[i].val,
+            });
+            value.push(data[i].val);
+          }
         }
-        settemperatureTime(time);
-        settemperatureValue(value);
+
+        const size = time.length;
+        var filteredTime = [];
+        if (size <= 6)
+          filteredTime = time.sort(function (a, b) {
+            return a.time < b.time ? -1 : a.time == b.time ? 0 : 1;
+          });
+        else
+          filteredTime = time
+            .sort(function (a, b) {
+              return a.time < b.time ? -1 : a.time == b.time ? 0 : 1;
+            })
+            .slice(size - 6, size);
+        console.log(filteredTime);
+
+        var realTime = [];
+        var realValue = [];
+        for (let i = 0; i < filteredTime.length; i++) {
+          realTime.push(filteredTime[i].time);
+          realValue.push(filteredTime[i].value);
+        }
+
+        settemperatureTime(realTime);
+        settemperatureValue(realValue);
       });
     axios
       .get("https://smart-home-server-cafecotdua.herokuapp.com/humidity")
       .then((res) => {
-        const time = [];
+        var time = [];
         const value = [];
-        const data = res.data[0].data.slice(0, 6).sort(function (a, b) {
-          return new Date(a.time) - new Date(b.time);
-        });
+        const data = res.data[0].data;
         for (let i = 0; i < data.length; i++) {
-          time.push(Moment(data[i].time).format("Do"));
-          value.push(data[i].val);
+          if (
+            Moment(date).format("DD/MM/YYYY") ==
+            Moment(data[i].time).format("DD/MM/YYYY")
+          ) {
+            time.push({
+              time: Moment(data[i].time).format("hh:mm"),
+              value: data[i].val,
+            });
+            value.push(data[i].val);
+          }
         }
-        sethumidityTime(time);
-        sethumidityValue(value);
+
+        const size = time.length;
+        var filteredTime = [];
+        if (size <= 6)
+          filteredTime = time.sort(function (a, b) {
+            return a.time < b.time ? -1 : a.time == b.time ? 0 : 1;
+          });
+        else
+          filteredTime = time
+            .sort(function (a, b) {
+              return a.time < b.time ? -1 : a.time == b.time ? 0 : 1;
+            })
+            .slice(size - 6, size);
+        console.log(filteredTime);
+
+        var realTime = [];
+        var realValue = [];
+        for (let i = 0; i < filteredTime.length; i++) {
+          realTime.push(filteredTime[i].time);
+          realValue.push(filteredTime[i].value);
+        }
+        sethumidityTime(realTime);
+        sethumidityValue(realValue);
       });
-  }, []);
+  }, [date]);
 
   return (
     <View style={{ height: "400px", marginTop: "5%" }}>
+      <Modal
+        visible={modal}
+        onTouchOutside={() => {
+          setmodal(false);
+        }}
+      >
+        <ModalContent>
+          <CalendarPicker onDateChange={setdate} />
+        </ModalContent>
+      </Modal>
+      <View style={styles.sectionStyle}>
+        <Text style={styles.text_birthday} placeholder="DD/MM/YYYY">
+          {Moment(date).format("DD/MM/YYYY")}
+        </Text>
+        <TouchableOpacity
+          onPress={() => {
+            setmodal(true);
+          }}
+        >
+          <Image
+            style={styles.imageStyle2}
+            source={require("../assets/calendar.png")}
+          />
+        </TouchableOpacity>
+      </View>
       <ScrollView>
         <SafeAreaView style={styles.container}>
           <View>
@@ -151,6 +240,35 @@ export default function Chart() {
 }
 
 const styles = StyleSheet.create({
+  text_birthday: {
+    backgroundColor: "transparent",
+    fontSize: 16,
+    color: "#C8C8C8",
+    paddingLeft: "30%",
+    justifyContent: "center",
+    flex: 1,
+    borderBottomRightRadius: 10,
+    borderTopRightRadius: 10,
+  },
+  sectionStyle: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 5,
+    backgroundColor: "transparent",
+    marginLeft: "8%",
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: "#FDA43C",
+    marginRight: "8%",
+    marginBottom: "10px",
+  },
+  imageStyle2: {
+    height: 50,
+    width: 50,
+    resizeMode: "stretch",
+    alignItems: "center",
+  },
   text_name: {
     marginTop: "8px",
     backgroundColor: "transparent",

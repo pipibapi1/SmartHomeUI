@@ -70,7 +70,8 @@ const styles = StyleSheet.create({
     height: "60%",
     borderRadius: 15,
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
+    marginLeft: "2%",
     flexDirection: "row",
     borderWidth: 1,
   },
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
   },
   home_image: {
     marginRight: "10px",
+    marginLeft: "10%",
     width: "46px",
     height: "46px",
   },

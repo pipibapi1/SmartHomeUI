@@ -5,7 +5,6 @@ import { LinearGradient } from "expo-linear-gradient";
 import Header from "./Header";
 import Footer from "./Footer";
 import Title from "./Title";
-import Statistic from "./Statistic";
 import History from "./History";
 // import Choice from "./Choice";
 // import Threshold from "./Threshold";
@@ -23,7 +22,6 @@ export default function Gas({ navigation }) {
         <Header navigation={navigation} />
       </SafeAreaView>
         <Title />
-        <Statistic />
         <History />
 
       <SafeAreaView style={{ marginTop: "-52px" }}></SafeAreaView>

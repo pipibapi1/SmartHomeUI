@@ -27,7 +27,7 @@ export default function Footer({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     //backgroundColor: "green",
-    marginTop: "35px",
+    marginTop: "37px",
     width: "100%",
     height: "16%",
     alignItems: "center",

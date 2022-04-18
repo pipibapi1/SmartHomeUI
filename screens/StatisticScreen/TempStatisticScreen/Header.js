@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50 / 2,
+    marginTop: "10%"
   },
   img2: {
     marginTop: "10%",
