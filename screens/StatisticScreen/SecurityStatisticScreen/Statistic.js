@@ -7,25 +7,26 @@ import {
   Image,
 } from "react-native";
 import axios from "axios";
-import Moment from 'moment';
+import Moment from "moment";
 
 export default function Choice({ navigation }) {
-
   const [data, setdata] = useState([]);
   const [num, setnum] = useState(0);
   const [time, settime] = useState("");
-  Moment.locale('en');
+  Moment.locale("en");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/door").then((res) => {
-      settime(Moment(res.data[0].data[0].time).format('MMM YYYY'))
-      var temp = 0;
-      for (let i = 0; i < res.data[0].data.length; i++) {
-        if(res.data[0].data[i].value == 1) temp += 1;
-      }
-      setnum(temp);
-      setdata(res.data[0]);
-    });
+    axios
+      .get("https://smart-home-server-cafecotdua.herokuapp.com/door")
+      .then((res) => {
+        settime(Moment(res.data[0].data[0].time).format("MMM YYYY"));
+        var temp = 0;
+        for (let i = 0; i < res.data[0].data.length; i++) {
+          if (res.data[0].data[i].value == 1) temp += 1;
+        }
+        setnum(temp);
+        setdata(res.data[0]);
+      });
   }, []);
 
   return (
@@ -33,7 +34,7 @@ export default function Choice({ navigation }) {
       <SafeAreaView style={styles.button}>
         {/* <SafeAreaView style={styles.button}> */}
         <Text style={styles.text}>Tháng: {time}</Text>
-        <Text style={styles.text}>Số lần báo động:  {num}</Text>
+        <Text style={styles.text}>Số lần báo động: {num}</Text>
         {/* </SafeAreaView> */}
       </SafeAreaView>
     </SafeAreaView>
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     paddingLeft: "10%",
     flexDirection: "column",
     borderWidth: 1,
-    borderColor: "white"
+    borderColor: "white",
   },
   button2: {
     marginTop: "50px",
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     color: "#FDA43C",
     fontWeight: "bold",
     flexDirection: "row",
-    marginTop: "5%"
+    marginTop: "5%",
   },
   text2: {
     backgroundColor: "transparent",

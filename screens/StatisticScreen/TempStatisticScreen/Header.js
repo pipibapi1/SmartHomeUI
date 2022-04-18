@@ -16,19 +16,17 @@ export default function Header({ navigation }) {
             navigation.navigate("Profile");
           }}
         >
-          <Image style={styles.img} source={require("../assets/profile.jpg")} />
+          <Image style={styles.img} source={require("../assets/user.png")} />
         </TouchableOpacity>
-        <Text style={styles.text}>Name</Text>
       </SafeAreaView>
-      <SafeAreaView >
-      <TouchableOpacity
+      <SafeAreaView>
+        <TouchableOpacity
           onPress={() => {
             navigation.navigate("Statistic");
           }}
         >
           <Image style={styles.img2} source={require("../assets/undo.png")} />
         </TouchableOpacity>
-        
       </SafeAreaView>
     </SafeAreaView>
   );
@@ -36,9 +34,9 @@ export default function Header({ navigation }) {
 
 const styles = StyleSheet.create({
   img: {
-    width: 55,
-    height: 52,
-    borderRadius: 52 / 2,
+    width: 50,
+    height: 50,
+    borderRadius: 50 / 2,
   },
   img2: {
     marginTop: "10%",
@@ -59,12 +57,11 @@ const styles = StyleSheet.create({
   info: {
     width: "28%",
     height: "80%",
-    marginLeft: "65%",
+    marginLeft: "70%",
     marginTop: "2%",
     flexDirection: "row",
     //backgroundColor: "red",
     alignItems: "center",
     justifyContent: "center",
-    justifyContent: "space-between",
   },
 });

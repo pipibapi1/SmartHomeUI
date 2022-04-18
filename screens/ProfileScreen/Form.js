@@ -44,14 +44,17 @@ export default function Form({ navigation }) {
 
   const onPress = () => {
     axios
-      .post("http://localhost:5000/userinfo/update", {
-        firstname: firstName,
-        lastname: lastName,
-        birthday: birthDay,
-        gender: Gender,
-        phone: phoneNumber,
-        email: email,
-      })
+      .post(
+        "https://smart-home-server-cafecotdua.herokuapp.com/userinfo/update",
+        {
+          firstname: firstName,
+          lastname: lastName,
+          birthday: birthDay,
+          gender: Gender,
+          phone: phoneNumber,
+          email: email,
+        }
+      )
       .then((response) => console.log(response.data));
     Swal.fire("Update Successfully!", "", "success");
     navigation.navigate("Home");
@@ -81,17 +84,19 @@ export default function Form({ navigation }) {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/userinfo").then((res) => {
-      console.log(res.data[0].firstname);
-      setdata(res.data[0]);
-      setemail(res.data[0].email);
-      setfirstName(res.data[0].firstname);
-      setlastName(res.data[0].lastname);
-      setbirthDay(res.data[0].birthday);
-      setGender(res.data[0].gender);
-      setphoneNumber(res.data[0].phone);
-      setLoading(false);
-    });
+    axios
+      .get("https://smart-home-server-cafecotdua.herokuapp.com/userinfo")
+      .then((res) => {
+        console.log(res.data[0].firstname);
+        setdata(res.data[0]);
+        setemail(res.data[0].email);
+        setfirstName(res.data[0].firstname);
+        setlastName(res.data[0].lastname);
+        setbirthDay(res.data[0].birthday);
+        setGender(res.data[0].gender);
+        setphoneNumber(res.data[0].phone);
+        setLoading(false);
+      });
   }, []);
 
   return (

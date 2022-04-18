@@ -15,10 +15,12 @@ export default function Choice({ navigation }) {
   Moment.locale("en");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/door").then((res) => {
-      console.log(res.data[0].data.length);
-      setdata(res.data[0].data);
-    });
+    axios
+      .get("https://smart-home-server-cafecotdua.herokuapp.com/door")
+      .then((res) => {
+        console.log(res.data[0].data.length);
+        setdata(res.data[0].data);
+      });
   }, []);
 
   return (

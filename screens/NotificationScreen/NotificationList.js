@@ -28,6 +28,7 @@ export default function NotificationList() {
 
   const notificationCard = (type, content, date, key) => {
     let newDate = new Date(date);
+    newDate.setHours(newDate.getHours() + 7);
     let hour = newDate.getUTCHours();
     if (hour < 10) {
       hour = "0" + hour;

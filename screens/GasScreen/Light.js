@@ -31,33 +31,6 @@ export default function Footer() {
         </SafeAreaView>
         <Text style={styles.text}>Light alert gas threshold</Text>
       </SafeAreaView>
-      <SafeAreaView style={styles.button2}>
-        <SafeAreaView style={{ flexDirection: "row" }}>
-          <Image
-            style={styles.home_image2}
-            source={require("./assets/edit.png")}
-          />
-          <Text style={styles.text}>Adjust gas threshold</Text>
-        </SafeAreaView>
-
-        <Image
-          style={styles.home_image3}
-          source={require("./assets/Rectangle.png")}
-        />
-        <Image
-          style={styles.home_image4}
-          source={require("./assets/Rectangle2.png")}
-        />
-        <SafeAreaView style={{ flexDirection: "row" }}>
-          <Text style={styles.text2}>0%</Text>
-          <Text style={styles.text3}>100%</Text>
-        </SafeAreaView>
-        <Text style={styles.text3}>67%</Text>
-        <Image
-          style={styles.home_image5}
-          source={require("./assets/Save.png")}
-        />
-      </SafeAreaView>
     </SafeAreaView>
   );
 }

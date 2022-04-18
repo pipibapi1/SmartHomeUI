@@ -16,13 +16,16 @@ export default function Form({ navigation }) {
 
   const onPress = () => {
     axios
-      .post("http://localhost:5000/account/login", {
-        password: password,
-        email: email,
-      })
+      .post(
+        "https://smart-home-server-cafecotdua.herokuapp.com/account/login",
+        {
+          password: password,
+          email: email,
+        }
+      )
       .then((response) => {
         console.log(response.data);
-        if(response.data) navigation.navigate("Home");
+        if (response.data) navigation.navigate("Home");
       });
   };
 
@@ -34,7 +37,7 @@ export default function Form({ navigation }) {
     setPassword(event.target.value);
   };
 
-  //   axios.post('http://localhost:5000/account/login').then(resp => {
+  //   axios.post('https://smart-home-server-cafecotdua.herokuapp.com/account/login').then(resp => {
 
   //   if (resp.data) console.log('hihi');
   // });

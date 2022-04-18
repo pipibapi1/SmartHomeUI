@@ -14,25 +14,26 @@ export default function Profile() {
   const [lastName, setlastName] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/userinfo").then((res) => {
-      setemail(res.data[0].email);
-      setfirstName(res.data[0].firstname);
-      setlastName(res.data[0].lastname);
-    });
+    axios
+      .get("https://smart-home-server-cafecotdua.herokuapp.com/userinfo")
+      .then((res) => {
+        setemail(res.data[0].email);
+        setfirstName(res.data[0].firstname);
+        setlastName(res.data[0].lastname);
+      });
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-        <Image style={styles.img} source={require("./assets/profile.jpg")} />
-        <Text style={styles.text_name}>{firstName + " " + lastName}</Text>
-        <Text style={styles.text_email}>{email}</Text>
+      <Image style={styles.img} source={require("./assets/profile.jpg")} />
+      <Text style={styles.text_name}>{firstName + " " + lastName}</Text>
+      <Text style={styles.text_email}>{email}</Text>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   img: {
-
     width: 92,
     height: 92,
     borderRadius: 92 / 2,

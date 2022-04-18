@@ -81,6 +81,9 @@ function Index({ navigation }) {
         });
         navigation.navigate("Alarm");
       }
+      if (payload.toString() == "0") {
+        navigation.navigate("Safe");
+      }
       myContext.SetDoor1Alert(payload);
     }
     if (topic == gas_topic) {

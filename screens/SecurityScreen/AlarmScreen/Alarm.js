@@ -15,14 +15,8 @@ export default function Alarm({ navigation }) {
         <Image style={styles.img} source={require("../assets/warning.png")} />
       </SafeAreaView>
       <SafeAreaView style={styles.buttonWrapper}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            navigation.navigate("Safe");
-            myContext.SetDoor1Alert(0);
-          }}
-        >
-          <Text style={styles.buttonText}>Remove Alarm</Text>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Your home is in danger</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </SafeAreaView>
@@ -44,12 +38,12 @@ const styles = StyleSheet.create({
   buttonText: {
     backgroundColor: "transparent",
     fontSize: 25,
-    color: "#ffffff",
+    color: "#F64242",
     fontWeight: "bold",
   },
   button: {
-    backgroundColor: "#F64242",
-    width: "65%",
+    //backgroundColor: "#F64242",
+    width: "75%",
     height: "55%",
     borderRadius: 1000,
     alignItems: "center",

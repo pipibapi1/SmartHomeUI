@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     //backgroundColor: "blue",
-    width: "80%",
+    width: "75%",
     height: "95%",
     flexDirection: "row",
     alignItems: "center",
@@ -56,19 +56,20 @@ const styles = StyleSheet.create({
   },
   inner: {
     backgroundColor: "#FDA43C",
-    width: "16%",
-    height: "68%",
+    width: "13%",
+    height: "47%",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 1000,
+    marginLeft: "5%",
   },
   back_img: {
     width: "80%",
     height: "30%",
   },
   setting_img: {
-    width: "25%",
-    height: "85%",
+    width: "18%",
+    height: "55%",
   },
   setting_text: {
     backgroundColor: "transparent",
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
   },
   title: {
     //backgroundColor: "red",
-    width: "70%",
+    width: "65%",
     height: "80%",
     flexDirection: "row",
     alignItems: "center",
