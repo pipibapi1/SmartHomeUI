@@ -7,12 +7,17 @@ import {
   Image,
 } from "react-native";
 
-export default function Footer() {
+export default function Footer({ navigation }) {
   return (
     <SafeAreaView>
-      <SafeAreaView style={styles.info}>
-        <Image style={styles.img} source={require("./assets/exit.png")} />
-      </SafeAreaView>
+        <TouchableOpacity
+        style={styles.info}
+          onPress={() => {
+            navigation.navigate("Login");
+          }}
+        >
+          <Image style={styles.img} source={require("./assets/exit.png")} />
+        </TouchableOpacity>
     </SafeAreaView>
   );
 }

@@ -20,7 +20,7 @@ export default function index({ navigation }) {
       <Header navigation={navigation} />
       <Profile />
       <Form navigation={navigation} />
-      <Footer />
+      <Footer  navigation={navigation} />
     </SafeAreaView>
   );
 }
