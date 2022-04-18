@@ -16,29 +16,30 @@ export default function Form({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const [emailValidError, setEmailValidError] = useState('');
+  const [emailValidError, setEmailValidError] = useState('');
 
-  // console.log(emailValidError);
-  // const handleValidEmail = val => {
-  //   let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-
-  //   if (val.length === 0) {
-  //     setEmailValidError('email address must be enter');
-  //   } else if (reg.test(val) === false) {
-  //     setEmailValidError('enter valid email address');
-  //   } else if (reg.test(val) === true) {
-  //     setEmailValidError('ok');
-  //   }
-  //   };
+  console.log(emailValidError);
+  const handleValidEmail = val => {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (val.target.value.length == 0) setEmailValidError('');
+    else if (reg.test(val.target.value) === false) {
+      setEmailValidError('Please enter valid email address!');
+    } else if (reg.test(val.target.value) === true) {
+      setEmailValidError('');
+    }
+    };
 
   const onPress = () => {
+    if (!name || !password || !email) Swal.fire("Something went wrong!", "", "error");
+    else if (password.length < 6) Swal.fire("Password must be at least 6 characters long", "", "info");
+    else if (name && email && password && !emailValidError && password.length >=6){
     axios
       .post("http://localhost:5000/account/users", {
         email: email,
       })
       .then((response) => {
         if (response.data == "exists") {
-          Swal.fire("Something went wrong!", "", "error");
+          Swal.fire("Email address exists!", "", "error");
           navigation.navigate("Register");
         } else {
           navigation.navigate("ConfirmScreen", {
@@ -48,6 +49,8 @@ export default function Form({ navigation }) {
           });
         }
       });
+    }
+    else Swal.fire("Something went wrong!", "", "error");
   };
 
   // const onPress = () => {
@@ -103,11 +106,11 @@ export default function Form({ navigation }) {
           value={email}
           onChange={(value) => {
             emailInputHandler(value);
-            // handleValidEmail(value);
+            handleValidEmail(value);
           }}
         ></TextInput>
       </View>
-      {/* {emailValidError ? <Text style={styles.error_text}>{emailValidError}</Text> : <Text></Text>} */}
+      {emailValidError ? <Text style={styles.error_text}>{emailValidError}</Text> : <Text></Text>}
 
       <Text style={styles.text_title}>Your password</Text>
       <View style={styles.sectionStyle}>
@@ -151,7 +154,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#FDA43C",
     marginRight: "8%",
-    marginBottom: "22px",
+    marginBottom: "28px",
   },
   imageStyle: {
     marginLeft: "3%",
@@ -203,7 +206,8 @@ const styles = StyleSheet.create({
   },
   error_text: {
     marginLeft: "8%",
-    marginBottom: "10px",
+    marginTop: "-25px",
+    paddingBottom: "10px",
     color: "#FDA43C",
   },
   container: {

@@ -117,11 +117,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     borderBottomRightRadius: 10,
     borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10,
     borderWidth: 1,
     paddingTop: "13px",
     paddingBottom: "13px",
     borderColor: "transparent",
-    marginLeft: "3%",
+
   },
   forgotpass: {
     backgroundColor: "transparent",

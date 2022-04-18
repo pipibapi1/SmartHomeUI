@@ -7,17 +7,20 @@ import {  StyleSheet,
   TouchableOpacity,
   View,} from "react-native";
   import axios from "axios";
-
+  import Swal from "sweetalert2";
 export default function Form(props) {
   // console.log(props.email);
   const email = props.email;
   console.log(email);
   const [password, setPassword] = useState("");
   const onPress = () => {
+    if (password.length < 6) Swal.fire("Password must be at least 6 characters long!", "", "info");
+    else{
     props.navigation.navigate("VerifyScreen",{
       password: password,
       email: email,
     })
+    }
   };
 
   const passwordInputHandler = (event) => {

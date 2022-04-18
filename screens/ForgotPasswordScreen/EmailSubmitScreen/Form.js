@@ -13,22 +13,6 @@ import Swal from "sweetalert2";
 
 export default function Form({ navigation }) {
   const [email, setEmail] = useState("");
-  // const onPress = () => {
-  //   axios
-  //     .post("http://localhost:5000/account/users", {
-  //       email: email,
-  //     })
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       if (response.data) {
-  //         Swal.fire("Something went wrong!", "", "error");
-  //       } else {
-  //         navigation.navigate("NewPasswordScreen", {
-  //           email: email,
-  //         });
-  //       }
-  //     });
-  // };
 
   const onPress = () => {
     axios
@@ -37,7 +21,7 @@ export default function Form({ navigation }) {
       })
       .then((response) => {
         if (response.data == "Not exists") {
-          Swal.fire("Something went wrong!", "", "error");
+          Swal.fire("Email address does not exist!", "", "error");
           navigation.navigate("ForgotPassword");
         } else {
           navigation.navigate("NewPasswordScreen", {
