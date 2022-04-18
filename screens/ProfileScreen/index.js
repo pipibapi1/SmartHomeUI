@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: "#FDA43C",
     fontWeight: "bold",
-    fontFamily: "Roboto",
+    //fontFamily: "Roboto",
   },
 });

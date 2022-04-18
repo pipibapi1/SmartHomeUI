@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
   toggle: {
     //backgroundColor: "red",
     flexDirection: "row",
-    alignItems: "right",
+    //alignItems: "right",
     justifyContent: "space-between",
     marginLeft: "81.3%",
     marginTop: "-25%",

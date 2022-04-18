@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     fontSize: 20,
     color: "#FDA43C",
-    fontFamily: "Roboto",
+    //fontFamily: "Roboto",
     marginLeft: "25%",
   },
   container: {

@@ -28,7 +28,7 @@ export default function MyHome() {
           <SafeAreaView style={styles.panel_part3}>
             <Text style={styles.homeinfo1}>{myContext.numLightOn}/4</Text>
             <SafeAreaView style={styles.title_part}>
-              <Text style={styles.title}>Light areas on</Text>
+              <Text style={styles.title}>Lights on</Text>
             </SafeAreaView>
           </SafeAreaView>
           <SafeAreaView style={styles.panel_part4}>
