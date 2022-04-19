@@ -6,18 +6,32 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { Restart } from "fiction-expo-restart";
+import Swal from "sweetalert2";
 
 export default function Footer({ navigation }) {
   return (
     <SafeAreaView>
-        <TouchableOpacity
+      <TouchableOpacity
         style={styles.info}
-          onPress={() => {
-            navigation.navigate("Login");
-          }}
-        >
-          <Image style={styles.img} source={require("./assets/exit.png")} />
-        </TouchableOpacity>
+        onPress={() => {
+          //navigation.navigate("Login");
+          Swal.fire({
+            title: "Are you sure you want to log out?",
+            text: "You will be disconnected from your home!",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Log out",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Restart();
+            }
+          });
+        }}
+      >
+        <Image style={styles.img} source={require("./assets/exit.png")} />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }

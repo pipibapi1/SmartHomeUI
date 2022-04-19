@@ -1,7 +1,7 @@
 import AppNavigator from "./app.navigator.js";
 import React, { useState } from "react";
 import AppContext from "./screens/AppContext.js";
-import { ModalPortal } from 'react-native-modals';
+import { ModalPortal } from "react-native-modals";
 
 export default function App() {
   //Global Data
@@ -185,6 +185,7 @@ export default function App() {
     doorToggleSwitch4,
     GasThresholdClick,
     lightGasThresholdClick,
+    setLightGasThreshold,
   };
   return (
     <AppContext.Provider value={globalData}>

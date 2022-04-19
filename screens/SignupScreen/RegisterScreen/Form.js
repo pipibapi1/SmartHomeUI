@@ -16,41 +16,51 @@ export default function Form({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [emailValidError, setEmailValidError] = useState('');
+  const [emailValidError, setEmailValidError] = useState("");
 
   console.log(emailValidError);
-  const handleValidEmail = val => {
+  const handleValidEmail = (val) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if (val.target.value.length == 0) setEmailValidError('');
+    if (val.target.value.length == 0) setEmailValidError("");
     else if (reg.test(val.target.value) === false) {
-      setEmailValidError('Please enter valid email address!');
+      setEmailValidError("Please enter valid email address!");
     } else if (reg.test(val.target.value) === true) {
-      setEmailValidError('');
+      setEmailValidError("");
     }
-    };
+  };
 
   const onPress = () => {
-    if (!name || !password || !email) Swal.fire("Something went wrong!", "", "error");
-    else if (password.length < 6) Swal.fire("Password must be at least 6 characters long", "", "info");
-    else if (name && email && password && !emailValidError && password.length >=6){
-    axios
-      .post("http://localhost:5000/account/users", {
-        email: email,
-      })
-      .then((response) => {
-        if (response.data == "exists") {
-          Swal.fire("Email address exists!", "", "error");
-          navigation.navigate("Register");
-        } else {
-          navigation.navigate("ConfirmScreen", {
+    if (!name || !password || !email)
+      Swal.fire("Something went wrong!", "", "error");
+    else if (password.length < 6)
+      Swal.fire("Password must be at least 6 characters long", "", "info");
+    else if (
+      name &&
+      email &&
+      password &&
+      !emailValidError &&
+      password.length >= 6
+    ) {
+      axios
+        .post(
+          "https://smart-home-server-cafecotdua.herokuapp.com/account/users",
+          {
             email: email,
-            name: name,
-            password: password,
-          });
-        }
-      });
-    }
-    else Swal.fire("Something went wrong!", "", "error");
+          }
+        )
+        .then((response) => {
+          if (response.data == "exists") {
+            Swal.fire("Email address exists!", "", "error");
+            navigation.navigate("Register");
+          } else {
+            navigation.navigate("ConfirmScreen", {
+              email: email,
+              name: name,
+              password: password,
+            });
+          }
+        });
+    } else Swal.fire("Something went wrong!", "", "error");
   };
 
   // const onPress = () => {
@@ -110,7 +120,11 @@ export default function Form({ navigation }) {
           }}
         ></TextInput>
       </View>
-      {emailValidError ? <Text style={styles.error_text}>{emailValidError}</Text> : <Text></Text>}
+      {emailValidError ? (
+        <Text style={styles.error_text}>{emailValidError}</Text>
+      ) : (
+        <Text></Text>
+      )}
 
       <Text style={styles.text_title}>Your password</Text>
       <View style={styles.sectionStyle}>

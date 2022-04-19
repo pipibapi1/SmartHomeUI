@@ -20,20 +20,22 @@ export default function Form(props) {
   const onPress = () => {
     if (otp == "0000") {
       axios
-        .post("http://localhost:5000/account/register", {
-          name: props.name,
-          password: props.password,
-          email: props.email,
-        })
+        .post(
+          "https://smart-home-server-cafecotdua.herokuapp.com/account/register",
+          {
+            name: props.name,
+            password: props.password,
+            email: props.email,
+          }
+        )
         .then((response) => {
           console.log(response.data);
-          if (response.data == "Successfull"){
+          if (response.data == "Successfull") {
             Swal.fire("Register Successfully!", "", "success");
             props.navigation.navigate("Login");
-          }          
+          }
         });
     } else Swal.fire("Something went wrong!", "", "error");
-    
   };
 
   const optInputHandler = (event) => {

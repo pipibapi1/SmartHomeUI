@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, Text, SafeAreaView, Image} from "react-native";
+import { StyleSheet, Text, SafeAreaView, Image } from "react-native";
 
 export default function MyHome() {
   return (
@@ -13,19 +13,19 @@ export default function MyHome() {
 }
 
 const styles = StyleSheet.create({
-    img: {
-        width: 38,
-        height: 38,
-        marginTop: "-68%",
-        marginLeft: "5%"
-      },
+  img: {
+    width: 38,
+    height: 38,
+    marginTop: "-68%",
+    marginLeft: "5%",
+  },
   container: {
     //backgroundColor: "grey",
     width: "100%",
     height: "28%",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection:'row'
+    flexDirection: "row",
   },
   content: {
     width: "88%",

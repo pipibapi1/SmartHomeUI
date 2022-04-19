@@ -16,9 +16,12 @@ export default function Form({ navigation }) {
 
   const onPress = () => {
     axios
-      .post("http://localhost:5000/account/users", {
-        email: email,
-      })
+      .post(
+        "https://smart-home-server-cafecotdua.herokuapp.com/account/users",
+        {
+          email: email,
+        }
+      )
       .then((response) => {
         if (response.data == "Not exists") {
           Swal.fire("Email address does not exist!", "", "error");

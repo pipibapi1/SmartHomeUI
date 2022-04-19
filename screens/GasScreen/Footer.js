@@ -26,7 +26,7 @@ export default function Footer({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    //backgroundColor: "green",
+    //backgroundColor: "purple",
     marginTop: "203px",
     width: "100%",
     height: "16%",

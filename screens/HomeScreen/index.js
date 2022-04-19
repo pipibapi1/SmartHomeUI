@@ -22,6 +22,7 @@ function Index({ navigation }) {
   const light_topic = "duy1711ak/feeds/iot-light";
   const autolight_topic = "duy1711ak/feeds/iot-lightsys";
   const autodoor_topic = "duy1711ak/feeds/iot-secu";
+  const alarmController_topic = "duy1711ak/feeds/alarmcontroller";
 
   const mqtt = require("mqtt");
   const Swal = require("sweetalert2");
@@ -46,6 +47,7 @@ function Index({ navigation }) {
         light_topic,
         autolight_topic,
         autodoor_topic,
+        alarmController_topic,
       ],
       () => {
         console.log(`Subscribe to topic '${temp_topic}'`);
@@ -55,6 +57,7 @@ function Index({ navigation }) {
         console.log(`Subscribe to topic '${light_topic}'`);
         console.log(`Subscribe to topic '${autolight_topic}'`);
         console.log(`Subscribe to topic '${autodoor_topic}'`);
+        console.log(`Subscribe to topic '${alarmController_topic}'`);
       }
     );
   });
@@ -82,7 +85,15 @@ function Index({ navigation }) {
         navigation.navigate("Alarm");
       }
       if (payload.toString() == "0") {
-        navigation.navigate("Safe");
+        console.log(
+          navigation.getState().routes[navigation.getState().index].name
+        );
+        if (
+          navigation.getState().routes[navigation.getState().index].name ==
+          "Alarm"
+        ) {
+          navigation.navigate("Safe");
+        }
       }
       myContext.SetDoor1Alert(payload);
     }
@@ -97,6 +108,7 @@ function Index({ navigation }) {
         });
         navigation.navigate("Gas");
       }
+      myContext.setLightGasThreshold(payload);
       myContext.SetGasWarning(payload);
     }
     if (topic == light_topic) {
@@ -121,6 +133,11 @@ function Index({ navigation }) {
       }
       if (payload.toString() == "0" && myContext.doorSwitchValue1) {
         myContext.doorToggleSwitch1(false);
+      }
+    }
+    if (topic == alarmController_topic) {
+      if (payload.toString() == "0") {
+        myContext.setLightGasThreshold(payload);
       }
     }
   });

@@ -16,19 +16,21 @@ export default function Form(props) {
   console.log(props.email);
   console.log(props.password);
 
-
   const [otp, setOtp] = useState("");
 
   const onPress = () => {
     if (otp == "0000") {
       axios
-        .post("http://localhost:5000/account/forgotpassword", {
-          password: props.password,
-          email: props.email,
-        })
+        .post(
+          "https://smart-home-server-cafecotdua.herokuapp.com/account/forgotpassword",
+          {
+            password: props.password,
+            email: props.email,
+          }
+        )
         .then((response) => {
           console.log(response.data);
-          if (response.data == "Successfull"){
+          if (response.data == "Successfull") {
             Swal.fire("Update Successfully!", "", "success");
             props.navigation.navigate("Login");
           }
@@ -41,8 +43,6 @@ export default function Form(props) {
   const optInputHandler = (event) => {
     setOtp(event.target.value);
   };
-
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -57,10 +57,7 @@ export default function Form(props) {
       </View>
 
       <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Image
-          style={styles.img}
-          source={require("../assets/submit.png")}
-        />
+        <Image style={styles.img} source={require("../assets/submit.png")} />
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -123,7 +120,6 @@ const styles = StyleSheet.create({
     paddingTop: "13px",
     paddingBottom: "13px",
     borderColor: "transparent",
-
   },
   forgotpass: {
     backgroundColor: "transparent",

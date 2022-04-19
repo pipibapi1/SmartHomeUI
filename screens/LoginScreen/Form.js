@@ -27,7 +27,7 @@ export default function Form({ navigation }) {
       .then((response) => {
         console.log(response.data);
         if (response.data != "Unsuccessful") {
-          // Swal.fire("Update Successfully!", "", "success");
+          Swal.fire("Login Successfully!", "", "success");
           navigation.navigate("Home");
         } else {
           Swal.fire("Something went wrong!", "", "error");
