@@ -1,4 +1,4 @@
-import React, { useState, Component, useEffect } from "react";
+import React, { useState, Component, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -26,8 +26,10 @@ import Modal, {
   BottomModal,
   ModalPortal,
 } from "react-native-modals";
+import AppContext from "../AppContext.js";
 
 export default function Form({ navigation }) {
+  const myContext = useContext(AppContext);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const startDate = selectedStartDate
     ? selectedStartDate.format("DD/MM/YYYY").toString()
@@ -87,15 +89,21 @@ export default function Form({ navigation }) {
     axios
       .get("https://smart-home-server-cafecotdua.herokuapp.com/userinfo")
       .then((res) => {
-        console.log(res.data[0].firstname);
-        setdata(res.data[0]);
-        setemail(res.data[0].email);
-        setfirstName(res.data[0].firstname);
-        setlastName(res.data[0].lastname);
-        setbirthDay(res.data[0].birthday);
-        setGender(res.data[0].gender);
-        setphoneNumber(res.data[0].phone);
-        setLoading(false);
+        for(let i = 0; i < res.data.length; i++) {
+          if(res.data[i].email == myContext.email)
+          {
+            console.log(res.data[i].firstname);
+            setdata(res.data[i]);
+            setemail(res.data[i].email);
+            setfirstName(res.data[i].firstname);
+            setlastName(res.data[i].lastname);
+            setbirthDay(res.data[i].birthday);
+            setGender(res.data[i].gender);
+            setphoneNumber(res.data[i].phone);
+            setLoading(false);
+          }
+        }
+        
       });
   }, []);
 

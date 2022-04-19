@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,8 +10,10 @@ import {
 } from "react-native";
 import Swal from "sweetalert2";
 import axios from "axios";
+import AppContext from "../AppContext.js";
 
 export default function Form({ navigation }) {
+  const myContext = useContext(AppContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -28,6 +30,7 @@ export default function Form({ navigation }) {
         console.log(response.data);
         if (response.data != "Unsuccessful") {
           Swal.fire("Login Successfully!", "", "success");
+          myContext.setemail(email);
           navigation.navigate("Home");
         } else {
           Swal.fire("Something went wrong!", "", "error");

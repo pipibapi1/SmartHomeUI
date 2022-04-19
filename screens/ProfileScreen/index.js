@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -6,8 +6,10 @@ import Header from "./Header";
 import Profile from "./profile";
 import Form from "./Form";
 import Footer from "./Footer";
+import AppContext from "../AppContext.js";
 
 export default function index({ navigation }) {
+  const myContext = useContext(AppContext);
   return (
     <SafeAreaView style={styles.container}>
       <LinearGradient

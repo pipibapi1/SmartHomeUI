@@ -4,6 +4,8 @@ import AppContext from "./screens/AppContext.js";
 import { ModalPortal } from "react-native-modals";
 
 export default function App() {
+  const [email, setemail] = useState("");
+
   //Global Data
   const [temperature, setTemperature] = useState(28);
   const [humidity, setHumidity] = useState(60);
@@ -145,6 +147,7 @@ export default function App() {
     }
   };
   const globalData = {
+    email: email,
     temperature: temperature,
     humidity: humidity,
     gasWarning: gasWarning,
@@ -165,6 +168,7 @@ export default function App() {
     doorSwitchValue2: doorSwitchValue2,
     doorSwitchValue3: doorSwitchValue3,
     doorSwitchValue4: doorSwitchValue4,
+    setemail: setemail,
     SetTemperature,
     SetHumidity,
     SetGasWarning,
