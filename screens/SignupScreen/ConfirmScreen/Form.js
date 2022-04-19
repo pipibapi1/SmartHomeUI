@@ -13,7 +13,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 export default function Form(props) {
-  console.log(props.name);
+  // console.log(props.name);
 
   const [otp, setOtp] = useState("");
 
@@ -21,7 +21,7 @@ export default function Form(props) {
     if (otp == "0000") {
       axios
         .post(
-          "https://smart-home-server-cafecotdua.herokuapp.com/account/register",
+          "http://localhost:5000/account/register",
           {
             name: props.name,
             password: props.password,

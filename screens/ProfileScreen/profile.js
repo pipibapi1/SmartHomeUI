@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,19 +7,26 @@ import {
   Image,
 } from "react-native";
 import axios from "axios";
+import AppContext from "../AppContext.js";
 
 export default function Profile() {
+  const myContext = useContext(AppContext);
   const [email, setemail] = useState(null);
-  const [firstName, setfirstName] = useState(null);
-  const [lastName, setlastName] = useState(null);
+  const [firstName, setfirstName] = useState("No");
+  const [lastName, setlastName] = useState("Name");
 
   useEffect(() => {
     axios
       .get("https://smart-home-server-cafecotdua.herokuapp.com/userinfo")
       .then((res) => {
-        setemail(res.data[0].email);
-        setfirstName(res.data[0].firstname);
-        setlastName(res.data[0].lastname);
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].email == myContext.email) {
+            setemail(res.data[i].email);
+            if(res.data[i].firstname) setfirstName(res.data[i].firstname);
+            if(res.data[i].lastname) setlastName(res.data[i].lastname);
+            break;
+          }
+        }
       });
   }, []);
 
