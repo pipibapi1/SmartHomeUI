@@ -41,20 +41,23 @@ export default function Chart() {
       .get("https://smart-home-server-cafecotdua.herokuapp.com/temp")
       .then((res) => {
         var time = [];
-        const value = [];
-        const data = res.data[0].data;
+        const data = res.data;
         for (let i = 0; i < data.length; i++) {
           if (
             Moment(date).format("DD/MM/YYYY") ==
-            Moment(data[i].time).format("DD/MM/YYYY")
+            Moment(data[i].createAt).format("DD/MM/YYYY")
           ) {
-            time.push({
-              time: Moment(data[i].time).format("hh:mm"),
-              value: data[i].val,
-            });
-            value.push(data[i].val);
+            console.log(data[i].data);
+            for(let j = 0; j < data[i].data.length; j++) {
+              time.push({
+                time: Moment(data[i].data[j].time).format("hh:mm"),
+                value: data[i].data[j].val,
+              });
+            }
+            break;
           }
         }
+        console.log(time);
 
         const size = time.length;
         var filteredTime = [];
@@ -84,20 +87,23 @@ export default function Chart() {
       .get("https://smart-home-server-cafecotdua.herokuapp.com/humidity")
       .then((res) => {
         var time = [];
-        const value = [];
-        const data = res.data[0].data;
+        const data = res.data;
         for (let i = 0; i < data.length; i++) {
           if (
             Moment(date).format("DD/MM/YYYY") ==
-            Moment(data[i].time).format("DD/MM/YYYY")
+            Moment(data[i].createAt).format("DD/MM/YYYY")
           ) {
-            time.push({
-              time: Moment(data[i].time).format("hh:mm"),
-              value: data[i].val,
-            });
-            value.push(data[i].val);
+            console.log(data[i].data);
+            for(let j = 0; j < data[i].data.length; j++) {
+              time.push({
+                time: Moment(data[i].data[j].time).format("hh:mm"),
+                value: data[i].data[j].val,
+              });
+            }
+            break;
           }
         }
+        console.log(time);
 
         const size = time.length;
         var filteredTime = [];
@@ -119,6 +125,7 @@ export default function Chart() {
           realTime.push(filteredTime[i].time);
           realValue.push(filteredTime[i].value);
         }
+
         sethumidityTime(realTime);
         sethumidityValue(realValue);
       });

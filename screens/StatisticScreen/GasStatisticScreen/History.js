@@ -13,7 +13,6 @@ import axios from "axios";
 import Moment from "moment";
 
 export default function Choice({ navigation }) {
-  const [data, setdata] = useState([]);
   const [distinctMonth, setdistinctMonth] = useState([]);
   const [month, setmonth] = useState(Moment(new Date()).format("MM/YYYY"));
   const [filteredData, setfilteredData] = useState([]);
@@ -27,25 +26,31 @@ export default function Choice({ navigation }) {
         var temp = 0;
         var distinctTime = [];
         var filteredTime = [];
-        for (let i = 0; i < res.data[0].data.length; i++) {
-          if (res.data[0].data[i].value == 1 && Moment(res.data[0].data[i].time).format("MM/YYYY") == month) {
-            temp += 1;
-            filteredTime.push(res.data[0].data[i].time);
-          }
+        for (let i = 0; i < res.data.length; i++) {
+          console.log(Moment(res.data[i].createAt).format("MM/YYYY"));
           if (
             !distinctTime.includes(
-              Moment(res.data[0].data[i].time).format("MM/YYYY")
+              Moment(res.data[i].createAt).format("MM/YYYY")
             )
           )
-            distinctTime.push(
-              Moment(res.data[0].data[i].time).format("MM/YYYY")
-            );
+            distinctTime.push(Moment(res.data[i].createAt).format("MM/YYYY"));
+        }
+        // console.log(distinctTime);
+        for (let i = 0; i < res.data.length; i++) {
+          for (let j = 0; j < res.data[i].data.length; j++) {
+            if (
+              res.data[i].data[j].value == 1 &&
+              Moment(res.data[i].data[j].time).format("MM/YYYY") == month
+            ) {
+              temp += 1;
+              filteredTime.push(res.data[i].data[j].time);
+            }
+          }
         }
         distinctTime = distinctTime.sort();
         setdistinctMonth(distinctTime);
         setfilteredData(filteredTime);
         setnum(temp);
-        setdata(res.data[0].data);
       });
   }, [month]);
 
@@ -71,8 +76,7 @@ export default function Choice({ navigation }) {
               mode="dialog"
               itemStyle={{ height: 44, width: 44 }}
             >
-              {distinctMonth
-              .map((filteredData) => (
+              {distinctMonth.map((filteredData) => (
                 <Picker.Item label={filteredData} value={filteredData} />
               ))}
             </Picker>
@@ -84,13 +88,12 @@ export default function Choice({ navigation }) {
           <Text style={styles.text1}>Nhật ký</Text>
           <hr style={{ width: "100%" }}></hr>
           <ScrollView>
-            {filteredData
-              .map((data) => (
-                <Text style={styles.text}>
-                  {Moment(data).format("MMMM Do YYYY, h:mm:ss a")}{" "}
-                  : <Text style={styles.text2}>Phát hiện rò rỉ khí gas</Text>
-                </Text>
-              ))}
+            {filteredData.map((data) => (
+              <Text style={styles.text}>
+                {Moment(data).format("MMMM Do YYYY, h:mm:ss a")} :{" "}
+                <Text style={styles.text2}>Phát hiện rò rỉ khí gas</Text>
+              </Text>
+            ))}
             <SafeAreaView style={{ marginTop: "5%" }}></SafeAreaView>
           </ScrollView>
         </SafeAreaView>
