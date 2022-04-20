@@ -21,7 +21,7 @@ export default function Form(props) {
     if (otp == "0000") {
       axios
         .post(
-          "http://localhost:5000/account/register",
+          "https://smart-home-server-cafecotdua.herokuapp.com/account/register",
           {
             name: props.name,
             password: props.password,
