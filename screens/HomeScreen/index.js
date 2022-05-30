@@ -32,7 +32,7 @@ function Index({ navigation }) {
     clean: true,
     connectTimeout: 1000000,
     username: "duy1711ak",
-    password: "aio_wSsJ61gqapOCi1uvfve5DTHJtc3N",
+    password: "aio_AiBw06MvLAKuH7qkApWKad6lFAFH",
     reconnectPeriod: 600000,
   });
 
